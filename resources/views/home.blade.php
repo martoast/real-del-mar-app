@@ -6,6 +6,7 @@
     @include('partials.residencias')
     @include('partials.interiores')
     @include('partials.amenidades')
+    @include('partials.galeria')
     @include('partials.masterplan')
     @include('partials.ubicacion')
     @include('partials.respaldo')

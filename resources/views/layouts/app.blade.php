@@ -44,6 +44,7 @@
                     'Esencia' => '#esencia',
                     'Residencias' => '#residencias',
                     'Amenidades' => '#amenidades',
+                    'Galería' => '#galeria',
                     'Masterplan' => '#masterplan',
                     'Ubicación' => '#ubicacion',
                 ] as $label => $href)
@@ -83,6 +84,7 @@
                     'Esencia' => '#esencia',
                     'Residencias' => '#residencias',
                     'Amenidades' => '#amenidades',
+                    'Galería' => '#galeria',
                     'Masterplan' => '#masterplan',
                     'Ubicación' => '#ubicacion',
                 ] as $label => $href)

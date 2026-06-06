@@ -149,3 +149,47 @@ body {
     opacity: 0.06;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+
+/* ------------------------------------------------------------------
+   Dual-row horizontal marquee gallery
+   Two tracks scroll in opposite directions and loop seamlessly.
+   The track holds TWO identical copies of the image list; each image
+   carries its own right margin (not flex gap) so translateX(-50%)
+   lands exactly on the seam with no jump.
+------------------------------------------------------------------- */
+.marquee {
+    overflow: hidden;
+    /* Soft fade at both edges */
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+}
+.marquee-track--ltr {
+    animation: marquee-ltr 70s linear infinite;
+}
+.marquee-track--rtl {
+    animation: marquee-rtl 85s linear infinite;
+}
+/* Pause both rows when hovering the whole gallery */
+.marquee-stage:hover .marquee-track {
+    animation-play-state: paused;
+}
+@keyframes marquee-rtl {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+@keyframes marquee-ltr {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track--ltr,
+    .marquee-track--rtl {
+        animation: none;
+    }
+    .marquee { overflow-x: auto; }
+}
