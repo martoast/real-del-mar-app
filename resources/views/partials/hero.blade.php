@@ -2,11 +2,16 @@
 <section class="grain relative flex min-h-svh items-end overflow-hidden bg-ocean-950">
     {{-- Backdrop --}}
     <div class="absolute inset-0">
-        <img
-            src="{{ asset('images/hero.png') }}"
-            alt="Vista aérea de Real del Mar frente al Océano Pacífico"
-            class="kenburns h-full w-full object-cover"
+        <video
+            class="h-full w-full object-cover"
+            autoplay
+            loop
+            muted
+            playsinline
+            poster="{{ asset('images/hero-poster.jpg') }}"
         >
+            <source src="{{ asset('videos/hero.mp4') }}" type="video/mp4">
+        </video>
         {{-- Readability gradients --}}
         <div class="absolute inset-0 bg-gradient-to-t from-ocean-950/90 via-ocean-950/20 to-ocean-950/30"></div>
     </div>
