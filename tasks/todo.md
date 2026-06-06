@@ -1,10 +1,13 @@
 # Real del Mar — TODO
 
+> Research complete — see `../../research/` (00-synthesis.md has the proposed section order + open questions for Ricardo)
+
 ## Now
-- [ ] Gather project info from Ricardo: branding, copy, photos/renders of the development, amenities, contact info
-- [ ] Define landing page sections (hero, about, location/map, gallery, amenities, contact form)
-- [ ] Design direction: color palette + typography (coastal Baja vibe?)
-- [ ] Build hero section (Three.js background candidate — ocean/coastal theme)
+- [ ] Get answers from Ricardo (see research/00-synthesis.md "Open questions"): assets/renders, product mix + phases, developer track record, sales contacts, pre-launch vs active sales
+- [ ] Design tokens: sand/ocean/terra palette + Fraunces/Hanken Grotesk type system in app.css (@theme)
+- [ ] Build hero: Three.js ocean shader (desktop) + static fallback (mobile), headline, sticky nav with Inquire CTA
+- [ ] Scaffold the 10-section homepage IA from research/00-synthesis.md
+- [ ] Bilingual setup: /en + /es route prefixes, lang files, hreflang, language toggle
 
 ## Next
 - [ ] Contact / lead capture form (mail driver TBD — Mailgun like bolt?)
