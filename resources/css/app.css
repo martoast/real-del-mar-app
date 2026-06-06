@@ -7,3 +7,145 @@
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+
+/* ------------------------------------------------------------------
+   Real del Mar — design tokens
+   "Arquitectura emocional frente al mar"
+   Palette drawn from the project's real materials: travertino (sand),
+   piedra Galarza (stone grey), teja San Cristóbal (clay), roble (oak),
+   cancelería negra (matte black), and the Pacific itself.
+------------------------------------------------------------------- */
+@theme {
+    --font-display: 'Fraunces Variable', ui-serif, Georgia, serif;
+    --font-sans: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+
+    /* Sand / travertine — page backgrounds */
+    --color-sand-50: #faf8f4;
+    --color-sand-100: #f4f0e7;
+    --color-sand-200: #e9e1d2;
+    --color-sand-300: #d9cbb2;
+    --color-sand-400: #c3ab85;
+
+    /* Pacific ocean — accents, dark bands, footer */
+    --color-ocean-300: #8fb3c2;
+    --color-ocean-400: #5e8fa3;
+    --color-ocean-600: #33647d;
+    --color-ocean-800: #1a3a4d;
+    --color-ocean-900: #0f2533;
+    --color-ocean-950: #0a1a26;
+
+    /* Teja / terracotta — the single warm accent (CTAs only) */
+    --color-terra-300: #ddab87;
+    --color-terra-400: #cd8257;
+    --color-terra-500: #b9663a;
+    --color-terra-600: #9d5230;
+
+    /* Stone & oak — supporting neutrals */
+    --color-stone-warm: #a39a8b;
+    --color-oak: #9c7a52;
+
+    /* Ink — warm charcoal text, never pure black */
+    --color-ink: #232019;
+    --color-ink-soft: #5c564a;
+
+    --tracking-eyebrow: 0.22em;
+}
+
+/* ------------------------------------------------------------------
+   Base
+------------------------------------------------------------------- */
+body {
+    @apply bg-sand-50 text-ink font-sans antialiased;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+::selection {
+    background-color: var(--color-terra-400);
+    color: var(--color-sand-50);
+}
+
+/* ------------------------------------------------------------------
+   Recurring editorial primitives
+------------------------------------------------------------------- */
+
+/* Eyebrow label — the small all-caps tracker above headlines */
+.eyebrow {
+    @apply font-sans text-xs font-semibold uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+}
+
+/* Display headline base */
+.display {
+    @apply font-display;
+    font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
+    line-height: 1.05;
+}
+
+/* Italic accent inside display headlines */
+.display em,
+.accent-italic {
+    @apply font-display italic font-light;
+    font-variation-settings: 'opsz' 144, 'SOFT' 50, 'WONK' 1;
+}
+
+/* Scroll-reveal initial states (driven by reveal.js) */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+}
+/* Staggered children */
+.reveal-group > * {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-group.is-revealed > * {
+    opacity: 1;
+    transform: none;
+}
+.reveal-group.is-revealed > *:nth-child(2) { transition-delay: 0.12s; }
+.reveal-group.is-revealed > *:nth-child(3) { transition-delay: 0.24s; }
+.reveal-group.is-revealed > *:nth-child(4) { transition-delay: 0.36s; }
+.reveal-group.is-revealed > *:nth-child(5) { transition-delay: 0.48s; }
+.reveal-group.is-revealed > *:nth-child(6) { transition-delay: 0.6s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal-group > * {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+/* Slow Ken Burns drift for the hero image */
+@keyframes kenburns {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+}
+.kenburns {
+    animation: kenburns 18s ease-out forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+    .kenburns { animation: none; }
+}
+
+/* Film grain overlay — keeps renders from feeling CGI-clean */
+.grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
