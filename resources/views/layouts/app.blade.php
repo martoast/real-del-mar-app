@@ -138,7 +138,6 @@
             <div class="grid gap-12 md:grid-cols-3">
                 <div class="text-sand-50">
                     @include('partials.logo', ['class' => 'h-10 w-auto'])
-                    <p class="eyebrow mt-4 text-[0.6rem] text-ocean-300">Rosarito · Baja California · México</p>
                     <p class="mt-6 max-w-xs text-sm leading-relaxed text-sand-200/70">
                         <x-t>
                             <x-slot:es>Un desarrollo integral frente al Pacífico. Respaldado por Grupo FRISA, diseñado por Cuaik.</x-slot:es>
