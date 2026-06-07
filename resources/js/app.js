@@ -1,9 +1,3 @@
-import '@fontsource-variable/fraunces';
-import '@fontsource/hanken-grotesk/400.css';
-import '@fontsource/hanken-grotesk/500.css';
-import '@fontsource/hanken-grotesk/600.css';
-import '@fontsource/hanken-grotesk/700.css';
-
 import Alpine from 'alpinejs';
 import collapse from '@alpinejs/collapse';
 import './reveal.js';

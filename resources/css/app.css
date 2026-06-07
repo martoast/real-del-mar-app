@@ -9,6 +9,67 @@
 @source '../**/*.js';
 
 /* ------------------------------------------------------------------
+   Brand fonts (self-hosted, matching cande.mx)
+   Headings → BoardWalk · Body → Titling Gothic Normal · Accent → Delight
+------------------------------------------------------------------- */
+@font-face {
+    font-family: 'BoardWalk';
+    src: url('/fonts/BoardwalkAve-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'BoardWalk';
+    src: url('/fonts/BoardwalkAve-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Titling Gothic Normal';
+    src: url('/fonts/TitlingGothic-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Titling Gothic Normal';
+    src: url('/fonts/TitlingGothic-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Titling Gothic Normal';
+    src: url('/fonts/TitlingGothic-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Delight';
+    src: url('/fonts/Delight-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Delight';
+    src: url('/fonts/Delight-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Delight';
+    src: url('/fonts/Delight-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ------------------------------------------------------------------
    Real del Mar — design tokens
    "Arquitectura emocional frente al mar"
    Palette drawn from the project's real materials: travertino (sand),
@@ -16,8 +77,9 @@
    cancelería negra (matte black), and the Pacific itself.
 ------------------------------------------------------------------- */
 @theme {
-    --font-display: 'Fraunces Variable', ui-serif, Georgia, serif;
-    --font-sans: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'BoardWalk', ui-serif, Georgia, serif;
+    --font-sans: 'Titling Gothic Normal', ui-sans-serif, system-ui, sans-serif;
+    --font-delight: 'Delight', ui-sans-serif, system-ui, sans-serif;
 
     /* Sand / travertine — page backgrounds */
     --color-sand-50: #faf8f4;
@@ -77,22 +139,19 @@ body {
     letter-spacing: var(--tracking-eyebrow);
 }
 
-/* Display headline base */
+/* Display headline base — BoardWalk (matches cande.mx headings) */
 .display {
     @apply font-display;
-    /* Moderate optical size = clean, classic letterforms (opsz 144 makes the
-       thin strokes spindly); WONK 0 = no quirky alternate glyphs. */
-    font-variation-settings: 'opsz' 72, 'SOFT' 0, 'WONK' 0;
-    font-feature-settings: 'liga' 1, 'dlig' 0;
-    line-height: 1.05;
+    line-height: 1.08;
 }
 
-/* Italic accent inside display headlines */
+/* Accent words inside headlines — render in Delight for a refined contrast
+   against BoardWalk (BoardWalk has no true italic, so no fake-oblique). */
 .display em,
 .accent-italic {
-    @apply font-display italic font-light;
-    font-variation-settings: 'opsz' 72, 'SOFT' 0, 'WONK' 0;
-    font-feature-settings: 'liga' 1, 'dlig' 0;
+    font-family: var(--font-delight);
+    font-style: normal;
+    font-weight: 300;
 }
 
 /* Scroll-reveal initial states (driven by reveal.js) */
