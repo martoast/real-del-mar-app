@@ -37,5 +37,15 @@
             @endforeach
         </div>
         <p class="reveal mt-4 text-xs text-sand-200/40"><x-t><x-slot:es>Tiempos de traslado aproximados.</x-slot:es><x-slot:en>Approximate travel times.</x-slot:en></x-t></p>
+
+        {{-- Map --}}
+        <div class="reveal mx-auto mt-16 max-w-3xl overflow-hidden rounded-2xl border border-sand-50/15 bg-sand-50 p-4 sm:p-8">
+            <img
+                src="{{ asset('images/mapa.svg') }}"
+                alt="Mapa de ubicación de Real del Mar en la zona costa de Baja California"
+                loading="lazy"
+                class="mx-auto h-auto w-full"
+            >
+        </div>
     </div>
 </section>

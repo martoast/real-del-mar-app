@@ -9,7 +9,6 @@
     @include('partials.amenidades')
     @include('partials.galeria')
     @include('partials.ubicacion')
-    @include('partials.mapa')
     @include('partials.respaldo')
     @include('partials.financiamiento')
     @include('partials.contacto')
