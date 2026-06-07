@@ -27,14 +27,16 @@
     >
         <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
             {{-- Logo --}}
-            <a href="#" class="group relative z-50 flex items-baseline gap-2">
+            <a
+                href="#"
+                class="group relative z-50 flex items-center gap-3 transition-colors duration-500"
+                :class="navSolid || navOpen ? 'text-ink' : 'text-sand-50'"
+                aria-label="Real del Mar — inicio"
+            >
+                @include('partials.logo', ['class' => 'h-8 w-auto'])
                 <span
-                    class="display text-xl font-medium tracking-tight transition-colors duration-500"
-                    :class="navSolid || navOpen ? 'text-ink' : 'text-sand-50'"
-                >Real <em>del</em> Mar</span>
-                <span
-                    class="eyebrow hidden text-[0.6rem] sm:inline transition-colors duration-500"
-                    :class="navSolid || navOpen ? 'text-ink-soft' : 'text-sand-200'"
+                    class="eyebrow hidden border-l pl-3 text-[0.6rem] sm:inline transition-colors duration-500"
+                    :class="navSolid || navOpen ? 'border-ink/15 text-ink-soft' : 'border-sand-50/25 text-sand-200'"
                 >Baja California</span>
             </a>
 
@@ -106,9 +108,9 @@
     <footer class="bg-ocean-950 text-sand-200">
         <div class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
             <div class="grid gap-12 md:grid-cols-3">
-                <div>
-                    <p class="display text-2xl text-sand-50">Real <em>del</em> Mar</p>
-                    <p class="eyebrow mt-2 text-[0.6rem] text-ocean-300">Rosarito · Baja California · México</p>
+                <div class="text-sand-50">
+                    @include('partials.logo', ['class' => 'h-10 w-auto'])
+                    <p class="eyebrow mt-4 text-[0.6rem] text-ocean-300">Rosarito · Baja California · México</p>
                     <p class="mt-6 max-w-xs text-sm leading-relaxed text-sand-200/70">
                         Un desarrollo integral frente al Pacífico. Respaldado por Grupo FRISA,
                         diseñado por Cuaik.
