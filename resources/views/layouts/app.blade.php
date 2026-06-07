@@ -153,7 +153,7 @@
                         <li><a href="#residencias" class="transition-colors hover:text-terra-300">Casas Candé</a></li>
                         <li><a href="#residencias" class="transition-colors hover:text-terra-300"><x-t><x-slot:es>Departamentos</x-slot:es><x-slot:en>Apartments</x-slot:en></x-t></a></li>
                         <li><a href="#amenidades" class="transition-colors hover:text-terra-300"><x-t><x-slot:es>Amenidades</x-slot:es><x-slot:en>Amenities</x-slot:en></x-t></a></li>
-                        <li><a href="#financiamiento" class="transition-colors hover:text-terra-300"><x-t><x-slot:es>Financiamiento</x-slot:es><x-slot:en>Financing</x-slot:en></x-t></a></li>
+                        <li><a href="#ubicacion" class="transition-colors hover:text-terra-300"><x-t><x-slot:es>Ubicación</x-slot:es><x-slot:en>Location</x-slot:en></x-t></a></li>
                     </ul>
                 </div>
                 <div>
