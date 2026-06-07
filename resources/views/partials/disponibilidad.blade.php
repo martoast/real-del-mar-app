@@ -3,6 +3,10 @@
     $lots = json_decode(file_get_contents(resource_path('data/lots.json')), true) ?: [];
     $avail = collect($lots)->where('status', 'available')->count();
     $sold = collect($lots)->where('status', 'sold')->count();
+
+    $apts = json_decode(file_get_contents(resource_path('data/apartments.json')), true) ?: [];
+    $aAvail = collect($apts)->where('status', 'available')->count();
+    $aSold = collect($apts)->where('status', 'sold')->count();
 @endphp
 
 <section id="disponibilidad" class="bg-ocean-950 py-24 lg:py-32"
@@ -35,11 +39,11 @@
         {{-- Product toggle (mirrors Residencias via the shared store) --}}
         <div class="reveal mt-8 flex justify-center">
             <div class="inline-flex rounded-full border border-sand-50/15 bg-ocean-900/60 p-1.5">
-                <button @click="$store.product.tab = 'casas'"
+                <button @click="$store.product.tab = 'casas'; active = null"
                     class="eyebrow rounded-full px-6 py-2.5 text-[0.6rem] transition-all duration-300"
                     :class="$store.product.tab === 'casas' ? 'bg-sand-50 text-ink' : 'text-sand-200/70 hover:text-sand-50'"
                 >Casas Candé</button>
-                <button @click="$store.product.tab = 'depas'"
+                <button @click="$store.product.tab = 'depas'; active = null"
                     class="eyebrow rounded-full px-6 py-2.5 text-[0.6rem] transition-all duration-300"
                     :class="$store.product.tab === 'depas' ? 'bg-sand-50 text-ink' : 'text-sand-200/70 hover:text-sand-50'"
                 ><span class="lang-es">Departamentos</span><span class="lang-en">Apartments</span></button>
@@ -132,24 +136,86 @@
             </div>
         </div>
 
-        {{-- ============ DEPARTAMENTOS PLAN (placeholder until SVG arrives) ============ --}}
+        {{-- ============ DEPARTAMENTOS PLAN ============ --}}
         <div x-show="$store.product.tab === 'depas'" x-cloak
-             x-transition:enter="transition duration-500" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-             class="mt-12">
-            <div class="mx-auto max-w-2xl rounded-2xl border border-sand-50/15 bg-ocean-900/40 p-12 text-center lg:p-16">
-                <p class="eyebrow text-[0.6rem] text-ocean-300"><x-t><x-slot:es>Departamentos · 3 torres · 54 unidades</x-slot:es><x-slot:en>Apartments · 3 towers · 54 units</x-slot:en></x-t></p>
-                <p class="display mt-4 text-3xl font-light text-sand-50">
-                    <x-t><x-slot:es>Visualización de torres <em>próximamente</em></x-slot:es><x-slot:en>Towers visualization <em>coming soon</em></x-slot:en></x-t>
-                </p>
-                <p class="mx-auto mt-4 max-w-md text-sm leading-relaxed text-sand-100/70">
-                    <x-t>
-                        <x-slot:es>Estamos preparando el plano interactivo de los departamentos. Mientras tanto, escríbenos para conocer disponibilidad.</x-slot:es>
-                        <x-slot:en>We're preparing the interactive plan for the apartments. In the meantime, reach out to check availability.</x-slot:en>
-                    </x-t>
-                </p>
-                <a href="#contacto" class="eyebrow mt-8 inline-flex items-center justify-center rounded-full bg-terra-500 px-8 py-4 text-[0.65rem] text-sand-50 transition-all duration-300 hover:bg-terra-600">
-                    <x-t><x-slot:es>Solicitar disponibilidad</x-slot:es><x-slot:en>Request availability</x-slot:en></x-t>
-                </a>
+             x-transition:enter="transition duration-500" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+
+            {{-- Filter chips + live counts --}}
+            <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+                @foreach ([
+                    ['k' => 'all', 'es' => 'Todos', 'en' => 'All', 'n' => count($apts)],
+                    ['k' => 'available', 'es' => 'Disponibles', 'en' => 'Available', 'n' => $aAvail],
+                    ['k' => 'sold', 'es' => 'Vendidos', 'en' => 'Sold', 'n' => $aSold],
+                ] as $chip)
+                    <button @click="filter = '{{ $chip['k'] }}'"
+                        class="eyebrow flex items-center gap-2 rounded-full border px-5 py-2.5 text-[0.6rem] transition-colors duration-300"
+                        :class="filter === '{{ $chip['k'] }}' ? 'border-terra-400 bg-terra-400/15 text-sand-50' : 'border-sand-50/15 text-sand-200/70 hover:border-sand-50/40'">
+                        <span class="lang-es">{{ $chip['es'] }}</span><span class="lang-en">{{ $chip['en'] }}</span>
+                        <span class="text-sand-200/50">{{ $chip['n'] }}</span>
+                    </button>
+                @endforeach
+            </div>
+
+            <div class="mt-12 grid items-center gap-10 lg:grid-cols-5 lg:gap-12">
+                {{-- The elevation plan --}}
+                <div class="lg:col-span-3">
+                    <div class="relative mx-auto w-full max-w-2xl">
+                        <img src="{{ asset('images/departamentos-plan.svg') }}" alt=""
+                            class="pointer-events-none absolute inset-0 h-full w-full opacity-60 invert">
+                        <svg viewBox="0 0 1580.7 800.6" class="plan-svg relative w-full" xmlns="http://www.w3.org/2000/svg">
+                            @foreach ($apts as $apt)
+                                <path d="{{ $apt['d'] }}"
+                                    class="plan-lot plan-lot--{{ $apt['status'] }}"
+                                    :class="{ 'is-dim': !shown('{{ $apt['status'] }}') }"
+                                    @mouseenter="pick({ n: '{{ $apt['n'] }}', m2: {{ $apt['m2'] ?? 'null' }}, status: '{{ $apt['status'] }}' })"
+                                    @click="pick({ n: '{{ $apt['n'] }}', m2: {{ $apt['m2'] ?? 'null' }}, status: '{{ $apt['status'] }}' })"
+                                ></path>
+                            @endforeach
+                        </svg>
+                    </div>
+                </div>
+
+                {{-- Detail panel --}}
+                <div class="lg:col-span-2">
+                    <div class="rounded-2xl border border-sand-50/15 bg-ocean-900/60 p-8 backdrop-blur-sm lg:p-10">
+                        <template x-if="!active">
+                            <div class="py-6">
+                                <p class="eyebrow text-[0.6rem] text-ocean-300"><x-t><x-slot:es>Departamentos · 3 torres</x-slot:es><x-slot:en>Apartments · 3 towers</x-slot:en></x-t></p>
+                                <p class="display mt-3 text-2xl font-light text-sand-50">
+                                    <x-t><x-slot:es>Selecciona un departamento para ver los detalles</x-slot:es><x-slot:en>Select an apartment to see the details</x-slot:en></x-t>
+                                </p>
+                                <div class="mt-8 space-y-3 border-t border-sand-50/10 pt-6">
+                                    <p class="flex items-center gap-3 text-sm text-sand-100/80"><span class="h-3 w-3 rounded-sm" style="background: var(--color-terra-400)"></span><x-t><x-slot:es>Disponible</x-slot:es><x-slot:en>Available</x-slot:en></x-t></p>
+                                    <p class="flex items-center gap-3 text-sm text-sand-100/80"><span class="h-3 w-3 rounded-sm" style="background: var(--color-stone-warm)"></span><x-t><x-slot:es>Vendido</x-slot:es><x-slot:en>Sold</x-slot:en></x-t></p>
+                                </div>
+                            </div>
+                        </template>
+                        <template x-if="active">
+                            <div class="py-2">
+                                <div class="flex items-center justify-between">
+                                    <p class="eyebrow text-[0.6rem] text-ocean-300"><x-t><x-slot:es>Departamentos</x-slot:es><x-slot:en>Apartments</x-slot:en></x-t></p>
+                                    <span class="eyebrow rounded-full px-3 py-1 text-[0.5rem]"
+                                        :class="active && active.status === 'available' ? 'bg-terra-400/20 text-terra-300' : 'bg-sand-50/10 text-sand-200/60'">
+                                        <span x-show="active && active.status === 'available'"><span class="lang-es">Disponible</span><span class="lang-en">Available</span></span>
+                                        <span x-show="active && active.status === 'sold'"><span class="lang-es">Vendido</span><span class="lang-en">Sold</span></span>
+                                    </span>
+                                </div>
+                                <p class="display mt-3 text-5xl font-light text-sand-50">
+                                    <span class="lang-es">Depto.</span><span class="lang-en">Apt.</span> <span x-text="active && active.n"></span>
+                                </p>
+                                <div class="mt-6 border-t border-sand-50/10 pt-6" x-show="active && active.m2">
+                                    <p class="display text-3xl font-light text-terra-300"><span x-text="active && active.m2"></span> m²</p>
+                                </div>
+                                <a href="#contacto"
+                                    class="eyebrow mt-8 inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-[0.65rem] transition-all duration-300"
+                                    :class="active && active.status === 'available' ? 'bg-terra-500 text-sand-50 hover:bg-terra-600' : 'border border-sand-50/20 text-sand-200/70 hover:border-sand-50/40'">
+                                    <span x-show="active && active.status === 'available'"><span class="lang-es">Solicitar información</span><span class="lang-en">Request information</span></span>
+                                    <span x-show="active && active.status !== 'available'"><span class="lang-es">Ver otras opciones</span><span class="lang-en">See other options</span></span>
+                                </a>
+                            </div>
+                        </template>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
