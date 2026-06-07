@@ -1,9 +1,12 @@
 {{-- ============================== RESIDENCIAS ============================== --}}
 @php
+    $casasGallery = ['rdm-casa-fachada.jpg', 'rdm-casa-patio.jpg', 'rdm-casa-sala.jpg', 'rdm-casa-comedor.jpg', 'rdm-casa-recamara.jpg', 'rdm-casa-barra.jpg', 'rdm-casa-esquina.jpg', 'rdm-casas-aerea.jpg'];
+    $depasGallery = ['rdm-torres-sunset.jpg', 'rdm-edificios-golf.jpg', 'rdm-torres-dia.jpg', 'rdm-depto-a-sala.jpg', 'rdm-depto-a-terraza.jpg', 'rdm-depto-a-recamara.jpg', 'rdm-depto-b-sala.jpg', 'rdm-depto-a-01.jpg'];
+
     $casas = [
         [
             'nombre_es' => 'Tipología Ascendente', 'nombre_en' => 'Ascending Typology',
-            'm2' => '277 m²',
+            'm2' => '277 m²', 'img' => 'rdm-casa-sala.jpg',
             'specs' => [
                 ['es' => '3 recámaras + Flex', 'en' => '3 bedrooms + Flex'],
                 ['es' => '3.5 baños', 'en' => '3.5 baths'],
@@ -13,7 +16,7 @@
         ],
         [
             'nombre_es' => 'Tipología Descendente', 'nombre_en' => 'Descending Typology',
-            'm2' => '275 m²',
+            'm2' => '275 m²', 'img' => 'rdm-casa-comedor.jpg',
             'specs' => [
                 ['es' => '3 recámaras + Flex', 'en' => '3 bedrooms + Flex'],
                 ['es' => '3.5 baños', 'en' => '3.5 baths'],
@@ -24,7 +27,7 @@
     ];
     $depas = [
         [
-            'nombre' => 'Modelo A', 'm2' => '144 m²',
+            'nombre' => 'Modelo A', 'm2' => '144 m²', 'img' => 'rdm-depto-a-sala.jpg',
             'specs' => [
                 ['es' => '2 recámaras + Flex', 'en' => '2 bedrooms + Flex'],
                 ['es' => '3 baños', 'en' => '3 baths'],
@@ -34,7 +37,7 @@
             ],
         ],
         [
-            'nombre' => 'Modelo B', 'm2' => '102 m²',
+            'nombre' => 'Modelo B', 'm2' => '102 m²', 'img' => 'rdm-depto-b-sala.jpg',
             'specs' => [
                 ['es' => '1 recámara', 'en' => '1 bedroom'],
                 ['es' => '1.5 baños', 'en' => '1.5 baths'],
@@ -58,92 +61,151 @@
                 </x-t>
             </h2>
             <div class="mt-10 inline-flex rounded-full border border-ink/10 bg-sand-50 p-1.5">
-                <button
-                    @click="tab = 'casas'"
+                <button @click="tab = 'casas'"
                     class="eyebrow rounded-full px-7 py-3 text-[0.65rem] transition-all duration-300"
                     :class="tab === 'casas' ? 'bg-ink text-sand-50' : 'text-ink-soft hover:text-ink'"
                 >Casas Candé</button>
-                <button
-                    @click="tab = 'depas'"
+                <button @click="tab = 'depas'"
                     class="eyebrow rounded-full px-7 py-3 text-[0.65rem] transition-all duration-300"
                     :class="tab === 'depas' ? 'bg-ink text-sand-50' : 'text-ink-soft hover:text-ink'"
                 ><span class="lang-es">Departamentos</span><span class="lang-en">Apartments</span></button>
             </div>
         </div>
 
-        {{-- ---------- Casas Candé ---------- --}}
-        <div x-show="tab === 'casas'" x-transition:enter="transition duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="mt-16">
-            <div class="grid items-center gap-12 lg:grid-cols-2">
-                <div class="overflow-hidden rounded-2xl">
-                    <img src="{{ asset('images/rdm-casa-fachada.jpg') }}" alt="Casa Candé"
-                        class="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105">
-                </div>
-                <div>
-                    <p class="eyebrow text-[0.6rem] text-ink-soft"><x-t><x-slot:es>Solo 37 residencias · 3 etapas</x-slot:es><x-slot:en>Only 37 residences · 3 phases</x-slot:en></x-t></p>
-                    <h3 class="display mt-4 text-3xl font-light text-ink sm:text-4xl">Casas <em>Candé</em></h3>
-                    <p class="mt-6 leading-relaxed text-ink-soft">
-                        <x-t>
-                            <x-slot:es>Un proyecto residencial exclusivo frente al mar, compuesto por solo 37 residencias diseñadas para ofrecer privacidad, amplitud y una fuerte conexión con el entorno natural. Espacios luminosos, ventanales de piso a techo y vistas abiertas al mar — una experiencia de vida íntima y distinguida, enfocada en el diseño, la calma y un estilo de vida auténtico.</x-slot:es>
-                            <x-slot:en>An exclusive beachfront residential project of just 37 homes designed for privacy, spaciousness, and a strong connection to the natural surroundings. Light-filled spaces, floor-to-ceiling windows, and open sea views — an intimate, distinguished way of living focused on design, calm, and an authentic lifestyle.</x-slot:en>
-                        </x-t>
-                    </p>
+        {{-- ============ CASAS CANDÉ ============ --}}
+        <div x-show="tab === 'casas'"
+             x-transition:enter="transition duration-700" x-transition:enter-start="opacity-0 translate-y-6" x-transition:enter-end="opacity-100 translate-y-0"
+             class="mt-16"
+             x-data="{ active: '{{ asset('images/' . $casasGallery[0]) }}', loading: false, show(i){ if(i===this.active) return; this.loading=true; setTimeout(()=>this.active=i, 180); } }">
+
+            {{-- Cinematic showcase --}}
+            <div class="group relative overflow-hidden rounded-3xl bg-ocean-950 shadow-2xl shadow-ink/10">
+                <img :src="active" @load="loading=false" alt="Casas Candé"
+                    class="aspect-[4/3] w-full object-cover transition-opacity duration-300 sm:aspect-video"
+                    :class="loading ? 'opacity-0' : 'opacity-100'">
+                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ocean-950/85 via-ocean-950/10 to-transparent"></div>
+
+                {{-- Glass info panel --}}
+                <div class="absolute inset-x-0 bottom-0 p-6 sm:max-w-lg lg:p-10">
+                    <div class="rounded-2xl border border-sand-50/15 bg-ocean-950/40 p-6 backdrop-blur-md lg:p-8">
+                        <p class="eyebrow text-[0.6rem] text-terra-300"><x-t><x-slot:es>Solo 37 residencias · 3 etapas</x-slot:es><x-slot:en>Only 37 residences · 3 phases</x-slot:en></x-t></p>
+                        <h3 class="display mt-3 text-3xl font-light text-sand-50 sm:text-4xl">Casas <em>Candé</em></h3>
+                        <p class="mt-4 text-sm leading-relaxed text-sand-100/85">
+                            <x-t>
+                                <x-slot:es>Un proyecto residencial exclusivo frente al mar, compuesto por solo 37 residencias diseñadas para privacidad, amplitud y una fuerte conexión con el entorno natural.</x-slot:es>
+                                <x-slot:en>An exclusive beachfront residential project of just 37 homes, designed for privacy, spaciousness, and a strong connection to the natural surroundings.</x-slot:en>
+                            </x-t>
+                        </p>
+                        <a href="#contacto" class="eyebrow mt-6 inline-flex items-center gap-3 text-[0.6rem] text-sand-50">
+                            <x-t><x-slot:es>Agendar visita</x-slot:es><x-slot:en>Schedule a visit</x-slot:en></x-t>
+                            <span class="block h-px w-8 bg-terra-300 transition-all duration-300 group-hover:w-12"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
+            {{-- Thumbnail gallery --}}
+            <div class="mt-4 flex gap-3 overflow-x-auto pb-1">
+                @foreach ($casasGallery as $img)
+                    <button type="button" @click="show('{{ asset('images/' . $img) }}')"
+                        class="relative h-16 w-24 shrink-0 overflow-hidden rounded-lg transition-all duration-300 sm:h-20 sm:w-32"
+                        :class="active === '{{ asset('images/' . $img) }}' ? 'ring-2 ring-terra-400 ring-offset-2 ring-offset-sand-100' : 'opacity-55 hover:opacity-100'">
+                        <img src="{{ asset('images/' . $img) }}" alt="" loading="lazy" class="h-full w-full object-cover">
+                    </button>
+                @endforeach
+            </div>
+
+            {{-- Typology cards --}}
             <div class="mt-12 grid gap-6 md:grid-cols-2">
                 @foreach ($casas as $tipo)
-                    <div class="group rounded-2xl border border-ink/8 bg-sand-50 p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/5 lg:p-10">
-                        <div class="flex items-baseline justify-between gap-4">
-                            <h4 class="display text-2xl text-ink"><span class="lang-es">{{ $tipo['nombre_es'] }}</span><span class="lang-en">{{ $tipo['nombre_en'] }}</span></h4>
-                            <p class="display text-3xl font-light text-terra-500">{{ $tipo['m2'] }}</p>
+                    <div class="group overflow-hidden rounded-2xl border border-ink/8 bg-sand-50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/5">
+                        <div class="overflow-hidden">
+                            <img src="{{ asset('images/' . $tipo['img']) }}" alt="{{ $tipo['nombre_es'] }}" loading="lazy"
+                                class="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-105">
                         </div>
-                        <p class="eyebrow mt-1 text-[0.55rem] text-ink-soft"><x-t><x-slot:es>de construcción</x-slot:es><x-slot:en>of construction</x-slot:en></x-t></p>
-                        <ul class="mt-7 space-y-3">
-                            @foreach ($tipo['specs'] as $spec)
-                                <li class="flex items-center gap-3 text-sm text-ink-soft">
-                                    <span class="h-1 w-1 rounded-full bg-terra-400"></span><span><span class="lang-es">{{ $spec['es'] }}</span><span class="lang-en">{{ $spec['en'] }}</span></span>
-                                </li>
-                            @endforeach
-                        </ul>
+                        <div class="p-8 lg:p-10">
+                            <div class="flex items-baseline justify-between gap-4">
+                                <h4 class="display text-2xl text-ink"><span class="lang-es">{{ $tipo['nombre_es'] }}</span><span class="lang-en">{{ $tipo['nombre_en'] }}</span></h4>
+                                <p class="display text-3xl font-light text-terra-500">{{ $tipo['m2'] }}</p>
+                            </div>
+                            <p class="eyebrow mt-1 text-[0.55rem] text-ink-soft"><x-t><x-slot:es>de construcción</x-slot:es><x-slot:en>of construction</x-slot:en></x-t></p>
+                            <ul class="mt-7 space-y-3">
+                                @foreach ($tipo['specs'] as $spec)
+                                    <li class="flex items-center gap-3 text-sm text-ink-soft">
+                                        <span class="h-1 w-1 rounded-full bg-terra-400"></span><span><span class="lang-es">{{ $spec['es'] }}</span><span class="lang-en">{{ $spec['en'] }}</span></span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 @endforeach
             </div>
         </div>
 
-        {{-- ---------- Departamentos ---------- --}}
-        <div x-show="tab === 'depas'" x-cloak x-transition:enter="transition duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="mt-16">
-            <div class="grid items-center gap-12 lg:grid-cols-2">
-                <div class="overflow-hidden rounded-2xl">
-                    <img src="{{ asset('images/rdm-torres-sunset.jpg') }}" alt="Torres de departamentos con vista al mar"
-                        class="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105">
-                </div>
-                <div>
-                    <p class="eyebrow text-[0.6rem] text-ink-soft"><x-t><x-slot:es>3 torres · 18 unidades por torre</x-slot:es><x-slot:en>3 towers · 18 units per tower</x-slot:en></x-t></p>
-                    <h3 class="display mt-4 text-3xl font-light text-ink sm:text-4xl"><span class="lang-es">Departamentos</span><span class="lang-en">Apartments</span> <em>Real del Mar</em></h3>
-                    <p class="mt-6 leading-relaxed text-ink-soft">
-                        <x-t>
-                            <x-slot:es>54 departamentos distribuidos en tres torres íntimas, con terrazas generosas y vistas panorámicas al mar y al campo de golf. Dos tipologías pensadas para distintos momentos de vida — todas con la misma vocación: abrir el horizonte.</x-slot:es>
-                            <x-slot:en>54 apartments across three intimate towers, with generous terraces and panoramic views of the sea and the golf course. Two layouts for different stages of life — all with the same purpose: to open up the horizon.</x-slot:en>
-                        </x-t>
-                    </p>
+        {{-- ============ DEPARTAMENTOS ============ --}}
+        <div x-show="tab === 'depas'" x-cloak
+             x-transition:enter="transition duration-700" x-transition:enter-start="opacity-0 translate-y-6" x-transition:enter-end="opacity-100 translate-y-0"
+             class="mt-16"
+             x-data="{ active: '{{ asset('images/' . $depasGallery[0]) }}', loading: false, show(i){ if(i===this.active) return; this.loading=true; setTimeout(()=>this.active=i, 180); } }">
+
+            {{-- Cinematic showcase --}}
+            <div class="group relative overflow-hidden rounded-3xl bg-ocean-950 shadow-2xl shadow-ink/10">
+                <img :src="active" @load="loading=false" alt="Departamentos Real del Mar"
+                    class="aspect-[4/3] w-full object-cover transition-opacity duration-300 sm:aspect-video"
+                    :class="loading ? 'opacity-0' : 'opacity-100'">
+                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ocean-950/85 via-ocean-950/10 to-transparent"></div>
+
+                <div class="absolute inset-x-0 bottom-0 p-6 sm:max-w-lg lg:p-10">
+                    <div class="rounded-2xl border border-sand-50/15 bg-ocean-950/40 p-6 backdrop-blur-md lg:p-8">
+                        <p class="eyebrow text-[0.6rem] text-terra-300"><x-t><x-slot:es>3 torres · 18 unidades por torre</x-slot:es><x-slot:en>3 towers · 18 units per tower</x-slot:en></x-t></p>
+                        <h3 class="display mt-3 text-3xl font-light text-sand-50 sm:text-4xl"><span class="lang-es">Departamentos</span><span class="lang-en">Apartments</span> <em>Real del Mar</em></h3>
+                        <p class="mt-4 text-sm leading-relaxed text-sand-100/85">
+                            <x-t>
+                                <x-slot:es>54 departamentos en tres torres íntimas, con terrazas generosas y vistas panorámicas al mar y al campo de golf.</x-slot:es>
+                                <x-slot:en>54 apartments across three intimate towers, with generous terraces and panoramic views of the sea and the golf course.</x-slot:en>
+                            </x-t>
+                        </p>
+                        <a href="#contacto" class="eyebrow mt-6 inline-flex items-center gap-3 text-[0.6rem] text-sand-50">
+                            <x-t><x-slot:es>Agendar visita</x-slot:es><x-slot:en>Schedule a visit</x-slot:en></x-t>
+                            <span class="block h-px w-8 bg-terra-300 transition-all duration-300 group-hover:w-12"></span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
+            {{-- Thumbnail gallery --}}
+            <div class="mt-4 flex gap-3 overflow-x-auto pb-1">
+                @foreach ($depasGallery as $img)
+                    <button type="button" @click="show('{{ asset('images/' . $img) }}')"
+                        class="relative h-16 w-24 shrink-0 overflow-hidden rounded-lg transition-all duration-300 sm:h-20 sm:w-32"
+                        :class="active === '{{ asset('images/' . $img) }}' ? 'ring-2 ring-terra-400 ring-offset-2 ring-offset-sand-100' : 'opacity-55 hover:opacity-100'">
+                        <img src="{{ asset('images/' . $img) }}" alt="" loading="lazy" class="h-full w-full object-cover">
+                    </button>
+                @endforeach
+            </div>
+
+            {{-- Typology cards --}}
             <div class="mt-12 grid gap-6 md:grid-cols-2">
                 @foreach ($depas as $modelo)
-                    <div class="group rounded-2xl border border-ink/8 bg-sand-50 p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/5 lg:p-10">
-                        <div class="flex items-baseline justify-between gap-4">
-                            <h4 class="display text-2xl text-ink">{{ $modelo['nombre'] }}</h4>
-                            <p class="display text-3xl font-light text-terra-500">{{ $modelo['m2'] }}</p>
+                    <div class="group overflow-hidden rounded-2xl border border-ink/8 bg-sand-50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/5">
+                        <div class="overflow-hidden">
+                            <img src="{{ asset('images/' . $modelo['img']) }}" alt="{{ $modelo['nombre'] }}" loading="lazy"
+                                class="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-105">
                         </div>
-                        <p class="eyebrow mt-1 text-[0.55rem] text-ink-soft"><x-t><x-slot:es>+ terrazas variables</x-slot:es><x-slot:en>+ variable terraces</x-slot:en></x-t></p>
-                        <ul class="mt-7 space-y-3">
-                            @foreach ($modelo['specs'] as $spec)
-                                <li class="flex items-center gap-3 text-sm text-ink-soft">
-                                    <span class="h-1 w-1 rounded-full bg-terra-400"></span><span><span class="lang-es">{{ $spec['es'] }}</span><span class="lang-en">{{ $spec['en'] }}</span></span>
-                                </li>
-                            @endforeach
-                        </ul>
+                        <div class="p-8 lg:p-10">
+                            <div class="flex items-baseline justify-between gap-4">
+                                <h4 class="display text-2xl text-ink">{{ $modelo['nombre'] }}</h4>
+                                <p class="display text-3xl font-light text-terra-500">{{ $modelo['m2'] }}</p>
+                            </div>
+                            <p class="eyebrow mt-1 text-[0.55rem] text-ink-soft"><x-t><x-slot:es>+ terrazas variables</x-slot:es><x-slot:en>+ variable terraces</x-slot:en></x-t></p>
+                            <ul class="mt-7 space-y-3">
+                                @foreach ($modelo['specs'] as $spec)
+                                    <li class="flex items-center gap-3 text-sm text-ink-soft">
+                                        <span class="h-1 w-1 rounded-full bg-terra-400"></span><span><span class="lang-es">{{ $spec['es'] }}</span><span class="lang-en">{{ $spec['en'] }}</span></span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 @endforeach
             </div>
