@@ -266,3 +266,34 @@ body {
     }
     .marquee { overflow-x: auto; }
 }
+
+/* ------------------------------------------------------------------
+   Interactive site plan (Disponibilidad) — lot polygons over the
+   line-art plan. Status drives fill; hover/filter drive opacity.
+------------------------------------------------------------------- */
+.plan-lot {
+    stroke: rgba(250, 248, 244, 0.55);
+    stroke-width: 1.1px;
+    cursor: pointer;
+    transition: opacity 0.35s ease, filter 0.25s ease;
+}
+.plan-lot--available { fill: var(--color-terra-400); opacity: 0.82; }
+.plan-lot--sold      { fill: var(--color-stone-warm); opacity: 0.45; }
+.plan-lot--reserved  { fill: var(--color-ocean-400); opacity: 0.75; }
+.plan-lot:hover      { filter: brightness(1.18) saturate(1.1); opacity: 1; }
+.plan-lot.is-dim     { opacity: 0.07 !important; }
+
+@keyframes planPulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 0.92; } }
+@media (prefers-reduced-motion: no-preference) {
+    .plan-lot--available { animation: planPulse 3.2s ease-in-out infinite; }
+}
+
+/* 3D tilt wrapper */
+.plan-tilt {
+    transition: transform 0.25s ease-out;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+    .plan-tilt { transform: none !important; }
+}

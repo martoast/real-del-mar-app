@@ -4,6 +4,7 @@
     @include('partials.hero')
     @include('partials.esencia')
     @include('partials.residencias')
+    @include('partials.disponibilidad')
     @include('partials.galeria')
     @include('partials.cta-video')
     @include('partials.amenidades')
