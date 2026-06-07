@@ -28,13 +28,4 @@
         </div>
     </div>
 
-    {{-- Scroll cue --}}
-    <a href="#esencia"
-       class="group absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
-       aria-label="Bajar">
-        <span class="eyebrow text-[0.55rem] text-sand-100/70"><x-t><x-slot:es>Descubrir</x-slot:es><x-slot:en>Discover</x-slot:en></x-t></span>
-        <svg class="h-5 w-5 animate-bounce text-sand-100/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-        </svg>
-    </a>
 </section>
