@@ -1,58 +1,71 @@
-{{-- ============================== AMENIDADES ============================== --}}
-<section id="amenidades" class="bg-sand-100 py-24 lg:py-36">
-    <div class="mx-auto max-w-7xl px-6 lg:px-10">
-        <div class="reveal-group max-w-2xl">
-            <p class="eyebrow text-terra-500"><x-t><x-slot:es>Amenidades</x-slot:es><x-slot:en>Amenities</x-slot:en></x-t></p>
-            <h2 class="display mt-6 text-4xl font-light text-ink sm:text-5xl">
-                <x-t>
-                    <x-slot:es>Eleva tu <em>día a día</em></x-slot:es>
-                    <x-slot:en>Elevate your <em>everyday</em></x-slot:en>
-                </x-t>
-            </h2>
-            <p class="mt-8 text-lg leading-relaxed text-ink-soft">
-                <x-t>
-                    <x-slot:es>Una comunidad completa pensada para compartir la mesa, moverte, descansar y vivir momentos — todo a unos pasos de casa.</x-slot:es>
-                    <x-slot:en>A complete community made for sharing the table, staying active, resting, and living moments — all a few steps from home.</x-slot:en>
-                </x-t>
-            </p>
-        </div>
+{{-- ============================== AMENIDADES (slider) ============================== --}}
+@php
+    $amenidades = [
+        ['img' => 'rdm-am-golf.webp',        't_es' => 'Campo de golf',      't_en' => 'Golf course',     'd_es' => '8 hoyos con vistas espectaculares al mar.',            'd_en' => '8 holes with stunning sea views.'],
+        ['img' => 'rdm-am-hipico.webp',      't_es' => 'Club hípico',        't_en' => 'Equestrian club',  'd_es' => 'Cabalgatas y espacios para disfrutar junto al mar.',   'd_en' => 'Spaces to enjoy horseback riding by the sea.'],
+        ['img' => 'rdm-am-club.webp',        't_es' => 'Casa Club',          't_en' => 'Clubhouse',        'd_es' => 'Espacios sociales elegantes para convivir y relajarse.', 'd_en' => 'Elegant social spaces to gather and relax.'],
+        ['img' => 'rdm-am-alberca.webp',     't_es' => 'Alberca',            't_en' => 'Pool',             'd_es' => 'Descanso y disfrute en un entorno privado.',           'd_en' => 'Rest and enjoyment in a private setting.'],
+        ['img' => 'rdm-am-padel.webp',       't_es' => 'Pádel y Tenis',      't_en' => 'Padel & Tennis',   'd_es' => 'Energía y precisión en canchas privadas.',             'd_en' => 'Energy and precision on private courts.'],
+        ['img' => 'rdm-am-parque.webp',      't_es' => 'Parque ecológico',   't_en' => 'Ecological park',  'd_es' => 'Áreas verdes para reconectar con la naturaleza.',      'd_en' => 'Green areas to connect with nature.'],
+        ['img' => 'rdm-am-escuela.webp',     't_es' => 'Escuela privada',    't_en' => 'Private school',   'd_es' => 'Educación de primer nivel dentro del complejo.',       'd_en' => 'First-class education within the community.'],
+        ['img' => 'rdm-am-restaurante.webp', 't_es' => 'Restaurante y bar',  't_en' => 'Restaurant & bar', 'd_es' => 'Gastronomía y coctelería con vistas incomparables.',   'd_en' => 'Cuisine and cocktails with incomparable views.'],
+        ['img' => 'rdm-am-spa.jpg',          't_es' => 'Spa (próximamente)', 't_en' => 'Spa (coming soon)','d_es' => 'Bienestar y relajación en un entorno de lujo.',        'd_en' => 'Wellness and relaxation in a luxurious setting.'],
+    ];
+@endphp
 
-        {{-- Featured amenity cards --}}
-        <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            @foreach ([
-                ['img' => 'amenidad-alberca.png', 'titulo_es' => 'Alberca & Casa Club', 'titulo_en' => 'Pool & Clubhouse', 'desc_es' => 'Borde infinito hacia el Pacífico, junto a la casa club y el gimnasio.', 'desc_en' => 'Infinity edge toward the Pacific, beside the clubhouse and gym.'],
-                ['img' => 'amenidad-padel.png', 'titulo_es' => 'Pádel & Tenis', 'titulo_en' => 'Padel & Tennis', 'desc_es' => 'Canchas de pádel y tenis rodeadas de paisaje costero.', 'desc_en' => 'Padel and tennis courts surrounded by coastal landscape.'],
-                ['img' => 'amenidad-firepit.png', 'titulo_es' => 'Fire pits & Asadores', 'titulo_en' => 'Fire pits & Grills', 'desc_es' => 'Tardes alrededor del fuego con el atardecer de fondo.', 'desc_en' => 'Evenings around the fire with the sunset as a backdrop.'],
-            ] as $i => $amenidad)
-                <div class="reveal group relative overflow-hidden rounded-2xl {{ $i === 0 ? 'md:col-span-2 lg:col-span-1' : '' }}">
-                    <img src="{{ asset('images/' . $amenidad['img']) }}" alt="{{ $amenidad['titulo_es'] }}"
-                        class="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-ocean-950/85 via-ocean-950/10 to-transparent"></div>
+<section id="amenidades" class="overflow-hidden bg-sand-100 py-24 lg:py-32"
+    x-data="{ nudge(dir) { const t = $refs.track; const c = t.querySelector('[data-card]'); const amt = c ? c.offsetWidth + 24 : 380; t.scrollBy({ left: dir * amt, behavior: 'smooth' }); } }">
+
+    {{-- Header + arrows --}}
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+        <div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div class="reveal-group max-w-xl">
+                <p class="eyebrow text-terra-500"><x-t><x-slot:es>Amenidades</x-slot:es><x-slot:en>Amenities</x-slot:en></x-t></p>
+                <h2 class="display mt-6 text-4xl font-light text-ink sm:text-5xl">
+                    <x-t>
+                        <x-slot:es>Eleva tu <em>día a día</em></x-slot:es>
+                        <x-slot:en>Elevate your <em>everyday</em></x-slot:en>
+                    </x-t>
+                </h2>
+                <p class="mt-6 text-lg leading-relaxed text-ink-soft">
+                    <x-t>
+                        <x-slot:es>Vivir en Candé significa tener acceso a las amenidades exclusivas de Real del Mar — un entorno diseñado para disfrutar, relajarse y mantenerse activo, siempre con el mar como telón de fondo.</x-slot:es>
+                        <x-slot:en>Living in Candé means access to the exclusive amenities of Real del Mar — an environment designed to enjoy, relax, and stay active, always with the sea as a backdrop.</x-slot:en>
+                    </x-t>
+                </p>
+            </div>
+
+            {{-- Arrows --}}
+            <div class="flex gap-3">
+                <button @click="nudge(-1)" aria-label="Anterior"
+                    class="flex h-12 w-12 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:border-ink/40 hover:bg-ink hover:text-sand-50">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <button @click="nudge(1)" aria-label="Siguiente"
+                    class="flex h-12 w-12 items-center justify-center rounded-full border border-ink/15 text-ink transition-colors hover:border-ink/40 hover:bg-ink hover:text-sand-50">
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    {{-- Slider track (native scroll-snap; arrows nudge it) --}}
+    <div x-ref="track"
+        class="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-6 pb-2 lg:px-10 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        @foreach ($amenidades as $a)
+            <article data-card class="group w-[78vw] shrink-0 snap-start sm:w-[340px] lg:w-[380px]">
+                <div class="relative overflow-hidden rounded-2xl bg-ocean-950 shadow-lg shadow-ink/5">
+                    <img src="{{ asset('images/' . $a['img']) }}" alt="{{ $a['t_es'] }}" loading="lazy"
+                        class="aspect-[3/4] w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-ocean-950/90 via-ocean-950/15 to-transparent"></div>
                     <div class="absolute inset-x-0 bottom-0 p-7">
-                        <h3 class="display text-2xl text-sand-50"><span class="lang-es">{{ $amenidad['titulo_es'] }}</span><span class="lang-en">{{ $amenidad['titulo_en'] }}</span></h3>
-                        <p class="mt-2 max-w-xs text-sm leading-relaxed text-sand-100/80"><span class="lang-es">{{ $amenidad['desc_es'] }}</span><span class="lang-en">{{ $amenidad['desc_en'] }}</span></p>
+                        <h3 class="display text-2xl text-sand-50"><span class="lang-es">{{ $a['t_es'] }}</span><span class="lang-en">{{ $a['t_en'] }}</span></h3>
+                        <p class="mt-2 text-sm leading-relaxed text-sand-100/80"><span class="lang-es">{{ $a['d_es'] }}</span><span class="lang-en">{{ $a['d_en'] }}</span></p>
                     </div>
                 </div>
-            @endforeach
-        </div>
-
-        {{-- Full amenity list --}}
-        <div class="reveal-group mt-12 grid grid-cols-2 gap-x-8 gap-y-4 rounded-2xl border border-ink/8 bg-sand-50 p-8 sm:grid-cols-3 lg:p-10">
-            @foreach ([
-                ['es' => 'Casa Club', 'en' => 'Clubhouse'],
-                ['es' => 'Gimnasio', 'en' => 'Gym'],
-                ['es' => 'Alberca', 'en' => 'Pool'],
-                ['es' => 'Cancha de tenis', 'en' => 'Tennis court'],
-                ['es' => 'Cancha de pádel', 'en' => 'Padel court'],
-                ['es' => 'Fire pits', 'en' => 'Fire pits'],
-                ['es' => 'Asadores', 'en' => 'Grills'],
-                ['es' => 'Juegos infantiles', 'en' => "Children's playground"],
-                ['es' => 'Área de usos mixtos', 'en' => 'Mixed-use area'],
-            ] as $amenidad)
-                <p class="flex items-center gap-3 text-sm text-ink-soft">
-                    <span class="h-1.5 w-1.5 rounded-full bg-terra-400"></span><span class="lang-es">{{ $amenidad['es'] }}</span><span class="lang-en">{{ $amenidad['en'] }}</span>
-                </p>
-            @endforeach
-        </div>
+            </article>
+        @endforeach
+        {{-- trailing spacer so the last card can rest with breathing room --}}
+        <div class="w-2 shrink-0 lg:w-6" aria-hidden="true"></div>
     </div>
 </section>
