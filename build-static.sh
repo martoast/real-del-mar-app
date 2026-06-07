@@ -33,32 +33,17 @@ echo "▸ Copying static assets…"
 for d in build images videos fonts; do cp -R "public/$d" "$OUT/$d"; done
 cp public/favicon.ico public/robots.txt "$OUT/" 2>/dev/null || true
 
-echo "▸ Writing Netlify config…"
-printf '/*    /index.html   200\n' > "$OUT/_redirects"
-cat > "$OUT/netlify.toml" <<'TOML'
-[build]
-  publish = "."
-
-[[headers]]
-  for = "/build/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/fonts/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/images/*"
-  [headers.values]
-    Cache-Control = "public, max-age=2592000"
-
-[[headers]]
-  for = "/videos/*"
-  [headers.values]
-    Cache-Control = "public, max-age=2592000"
-TOML
+echo "▸ Writing cache headers (no netlify.toml/_redirects — keeps drag-drop clean)…"
+cat > "$OUT/_headers" <<'HD'
+/build/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+/images/*
+  Cache-Control: public, max-age=2592000
+/videos/*
+  Cache-Control: public, max-age=2592000
+HD
 
 LEFT=$(grep -c '127.0.0.1\|localhost' "$OUT/index.html" || true)
 echo "✓ Done. Output: $(cd "$OUT" && pwd)  ($(du -sh "$OUT" | cut -f1))  | leftover host refs: $LEFT"
