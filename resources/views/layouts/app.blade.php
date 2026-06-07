@@ -33,7 +33,7 @@
                 :class="navSolid || navOpen ? 'text-ink' : 'text-sand-50'"
                 aria-label="Real del Mar — inicio"
             >
-                @include('partials.logo', ['class' => 'h-8 w-auto'])
+                @include('partials.logo', ['class' => 'h-12 w-auto lg:h-14'])
                 <span
                     class="eyebrow hidden border-l pl-3 text-[0.6rem] sm:inline transition-colors duration-500"
                     :class="navSolid || navOpen ? 'border-ink/15 text-ink-soft' : 'border-sand-50/25 text-sand-200'"
