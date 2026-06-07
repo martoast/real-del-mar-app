@@ -49,7 +49,7 @@
     ];
 @endphp
 
-<section id="residencias" class="bg-sand-100 py-24 lg:py-36" x-data="{ tab: 'casas' }">
+<section id="residencias" class="bg-sand-100 py-24 lg:py-36">
     <div class="mx-auto max-w-7xl px-6 lg:px-10">
         {{-- Header + tabs --}}
         <div class="reveal-group mx-auto max-w-2xl text-center">
@@ -61,19 +61,19 @@
                 </x-t>
             </h2>
             <div class="mt-10 inline-flex rounded-full border border-ink/10 bg-sand-50 p-1.5">
-                <button @click="tab = 'casas'"
+                <button @click="$store.product.tab = 'casas'"
                     class="eyebrow rounded-full px-7 py-3 text-[0.65rem] transition-all duration-300"
-                    :class="tab === 'casas' ? 'bg-ink text-sand-50' : 'text-ink-soft hover:text-ink'"
+                    :class="$store.product.tab === 'casas' ? 'bg-ink text-sand-50' : 'text-ink-soft hover:text-ink'"
                 >Casas Candé</button>
-                <button @click="tab = 'depas'"
+                <button @click="$store.product.tab = 'depas'"
                     class="eyebrow rounded-full px-7 py-3 text-[0.65rem] transition-all duration-300"
-                    :class="tab === 'depas' ? 'bg-ink text-sand-50' : 'text-ink-soft hover:text-ink'"
+                    :class="$store.product.tab === 'depas' ? 'bg-ink text-sand-50' : 'text-ink-soft hover:text-ink'"
                 ><span class="lang-es">Departamentos</span><span class="lang-en">Apartments</span></button>
             </div>
         </div>
 
         {{-- ============ CASAS CANDÉ ============ --}}
-        <div x-show="tab === 'casas'"
+        <div x-show="$store.product.tab === 'casas'"
              x-transition:enter="transition duration-700" x-transition:enter-start="opacity-0 translate-y-6" x-transition:enter-end="opacity-100 translate-y-0"
              class="mt-16"
              x-data="{ active: '{{ asset('images/' . $casasGallery[0]) }}', loading: false, show(i){ if(i===this.active) return; this.loading=true; setTimeout(()=>this.active=i, 180); } }">
@@ -143,7 +143,7 @@
         </div>
 
         {{-- ============ DEPARTAMENTOS ============ --}}
-        <div x-show="tab === 'depas'" x-cloak
+        <div x-show="$store.product.tab === 'depas'" x-cloak
              x-transition:enter="transition duration-700" x-transition:enter-start="opacity-0 translate-y-6" x-transition:enter-end="opacity-100 translate-y-0"
              class="mt-16"
              x-data="{ active: '{{ asset('images/' . $depasGallery[0]) }}', loading: false, show(i){ if(i===this.active) return; this.loading=true; setTimeout(()=>this.active=i, 180); } }">

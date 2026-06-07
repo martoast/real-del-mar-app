@@ -272,20 +272,31 @@ body {
    line-art plan. Status drives fill; hover/filter drive opacity.
 ------------------------------------------------------------------- */
 .plan-lot {
-    stroke: rgba(250, 248, 244, 0.55);
-    stroke-width: 1.1px;
+    stroke: rgba(250, 248, 244, 0.85);
+    stroke-width: 2px;
+    stroke-linejoin: round;
     cursor: pointer;
-    transition: opacity 0.35s ease, filter 0.25s ease;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: opacity 0.35s ease, filter 0.25s ease, transform 0.25s ease;
 }
-.plan-lot--available { fill: var(--color-terra-400); opacity: 0.82; }
-.plan-lot--sold      { fill: var(--color-stone-warm); opacity: 0.45; }
-.plan-lot--reserved  { fill: var(--color-ocean-400); opacity: 0.75; }
-.plan-lot:hover      { filter: brightness(1.18) saturate(1.1); opacity: 1; }
-.plan-lot.is-dim     { opacity: 0.07 !important; }
+.plan-lot--available { fill: var(--color-terra-400); opacity: 0.95; }
+.plan-lot--sold      { fill: var(--color-stone-warm); opacity: 0.62; }
+.plan-lot--reserved  { fill: var(--color-ocean-400); opacity: 0.85; }
+.plan-lot:hover {
+    filter: brightness(1.22) saturate(1.15);
+    opacity: 1;
+    transform: scale(1.06);
+    stroke: #fff;
+}
+.plan-lot.is-dim { opacity: 0.08 !important; }
 
-@keyframes planPulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 0.92; } }
+/* Depth: drop-shadow lifts the plan off the dark band */
+.plan-svg { filter: drop-shadow(0 26px 44px rgba(0, 0, 0, 0.6)); }
+
+@keyframes planPulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
 @media (prefers-reduced-motion: no-preference) {
-    .plan-lot--available { animation: planPulse 3.2s ease-in-out infinite; }
+    .plan-lot--available { animation: planPulse 3s ease-in-out infinite; }
 }
 
 /* 3D tilt wrapper */

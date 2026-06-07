@@ -23,6 +23,12 @@ document.addEventListener('alpine:init', () => {
             this.set(this.current === 'es' ? 'en' : 'es');
         },
     });
+
+    // Shared product selector (casas / depas) — links Residencias and Disponibilidad.
+    Alpine.store('product', {
+        tab: 'casas',
+        set(t) { this.tab = t; },
+    });
 });
 
 /**
