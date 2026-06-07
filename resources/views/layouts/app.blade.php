@@ -43,10 +43,8 @@
             {{-- Desktop links --}}
             <div class="hidden items-center gap-8 lg:flex">
                 @foreach ([
-                    'Esencia' => '#esencia',
                     'Residencias' => '#residencias',
                     'Amenidades' => '#amenidades',
-                    'Galería' => '#galeria',
                     'Masterplan' => '#masterplan',
                     'Ubicación' => '#ubicacion',
                 ] as $label => $href)
@@ -83,10 +81,8 @@
         >
             <div class="space-y-1 border-t border-ink/5 bg-sand-50 px-6 pb-8 pt-4">
                 @foreach ([
-                    'Esencia' => '#esencia',
                     'Residencias' => '#residencias',
                     'Amenidades' => '#amenidades',
-                    'Galería' => '#galeria',
                     'Masterplan' => '#masterplan',
                     'Ubicación' => '#ubicacion',
                 ] as $label => $href)
