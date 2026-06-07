@@ -17,8 +17,8 @@
     </div>
 
     {{-- Copy — one quiet line, let the video do the talking --}}
-    <div class="relative mx-auto w-full max-w-7xl px-6 pb-12 lg:px-10 lg:pb-16">
-        <div class="reveal-group is-revealed max-w-3xl">
+    <div class="relative mx-auto w-full max-w-7xl px-6 pb-28 text-center lg:px-10 lg:pb-16 lg:text-left">
+        <div class="reveal-group is-revealed mx-auto max-w-3xl lg:mx-0">
             <h1 class="display text-4xl font-light text-sand-50 drop-shadow-[0_2px_24px_rgba(10,26,38,0.55)] sm:text-5xl lg:text-6xl">
                 Donde el Pacífico <em>se convierte</em> en hogar
             </h1>
