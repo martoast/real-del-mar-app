@@ -4,6 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {{-- Set language before paint so there's no flash of the wrong language --}}
+    <script>
+        (function () {
+            try {
+                var l = localStorage.getItem('rdm_lang') || 'es';
+                document.documentElement.setAttribute('data-lang', l);
+                document.documentElement.setAttribute('lang', l);
+            } catch (e) {
+                document.documentElement.setAttribute('data-lang', 'es');
+            }
+        })();
+    </script>
+
     <title>{{ $title ?? 'Real del Mar — Vive frente al Pacífico · Rosarito, Baja California' }}</title>
     <meta name="description" content="{{ $description ?? 'Real del Mar es un desarrollo integral frente al Pacífico en la zona costa de Baja California. Casas y departamentos de alto nivel con vistas al mar y al campo de golf.' }}">
 
@@ -19,6 +32,15 @@
     @scroll.window.passive="navSolid = window.scrollY > 40"
     :class="navOpen ? 'overflow-hidden lg:overflow-auto' : ''"
 >
+
+    @php
+        $navLinks = [
+            ['es' => 'Residencias', 'en' => 'Residences', 'href' => '#residencias'],
+            ['es' => 'Amenidades', 'en' => 'Amenities', 'href' => '#amenidades'],
+            ['es' => 'Masterplan', 'en' => 'Masterplan', 'href' => '#masterplan'],
+            ['es' => 'Ubicación', 'en' => 'Location', 'href' => '#ubicacion'],
+        ];
+    @endphp
 
     {{-- ============================== NAV ============================== --}}
     <header
@@ -42,22 +64,31 @@
 
             {{-- Desktop links --}}
             <div class="hidden items-center gap-8 lg:flex">
-                @foreach ([
-                    'Residencias' => '#residencias',
-                    'Amenidades' => '#amenidades',
-                    'Masterplan' => '#masterplan',
-                    'Ubicación' => '#ubicacion',
-                ] as $label => $href)
+                @foreach ($navLinks as $item)
                     <a
-                        href="{{ $href }}"
+                        href="{{ $item['href'] }}"
                         class="eyebrow text-[0.65rem] transition-colors duration-300"
                         :class="navSolid ? 'text-ink-soft hover:text-terra-500' : 'text-sand-100 hover:text-white'"
-                    >{{ $label }}</a>
+                    ><span class="lang-es">{{ $item['es'] }}</span><span class="lang-en">{{ $item['en'] }}</span></a>
                 @endforeach
+
+                {{-- Language toggle (segmented) --}}
+                <div class="flex items-center gap-1.5">
+                    <button @click="$store.lang.set('es')"
+                        class="eyebrow text-[0.65rem] transition-colors"
+                        :class="$store.lang.current === 'es' ? (navSolid ? 'text-terra-500' : 'text-white') : (navSolid ? 'text-ink-soft/40 hover:text-ink-soft' : 'text-sand-100/50 hover:text-sand-100')"
+                    >ES</button>
+                    <span class="text-[0.65rem]" :class="navSolid ? 'text-ink/20' : 'text-sand-100/30'">/</span>
+                    <button @click="$store.lang.set('en')"
+                        class="eyebrow text-[0.65rem] transition-colors"
+                        :class="$store.lang.current === 'en' ? (navSolid ? 'text-terra-500' : 'text-white') : (navSolid ? 'text-ink-soft/40 hover:text-ink-soft' : 'text-sand-100/50 hover:text-sand-100')"
+                    >EN</button>
+                </div>
+
                 <a
                     href="#contacto"
                     class="eyebrow rounded-full px-5 py-2.5 text-[0.65rem] text-sand-50 transition-all duration-300 bg-terra-500 hover:bg-terra-600"
-                >Agendar visita</a>
+                ><span class="lang-es">Agendar visita</span><span class="lang-en">Schedule a visit</span></a>
             </div>
 
             {{-- Mobile hamburger --}}
@@ -80,17 +111,18 @@
             class="lg:hidden"
         >
             <div class="space-y-1 border-t border-ink/5 bg-sand-50 px-6 pb-8 pt-4">
-                @foreach ([
-                    'Residencias' => '#residencias',
-                    'Amenidades' => '#amenidades',
-                    'Masterplan' => '#masterplan',
-                    'Ubicación' => '#ubicacion',
-                ] as $label => $href)
-                    <a href="{{ $href }}" @click="navOpen = false"
-                        class="display block py-3 text-2xl text-ink transition-colors hover:text-terra-500">{{ $label }}</a>
+                @foreach ($navLinks as $item)
+                    <a href="{{ $item['href'] }}" @click="navOpen = false"
+                        class="display block py-3 text-2xl text-ink transition-colors hover:text-terra-500"><span class="lang-es">{{ $item['es'] }}</span><span class="lang-en">{{ $item['en'] }}</span></a>
                 @endforeach
-                <a href="#contacto" @click="navOpen = false"
-                    class="eyebrow mt-4 inline-block rounded-full bg-terra-500 px-6 py-3 text-[0.65rem] text-sand-50">Agendar visita</a>
+                <div class="mt-4 flex items-center gap-4">
+                    <a href="#contacto" @click="navOpen = false"
+                        class="eyebrow inline-block rounded-full bg-terra-500 px-6 py-3 text-[0.65rem] text-sand-50"><span class="lang-es">Agendar visita</span><span class="lang-en">Schedule a visit</span></a>
+                    {{-- Single-tap language switch — shows the language you'll switch to --}}
+                    <button @click="$store.lang.toggle()" class="eyebrow text-[0.65rem] text-ink-soft underline-offset-4 hover:underline">
+                        <span class="lang-es">English</span><span class="lang-en">Español</span>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -108,38 +140,53 @@
                     @include('partials.logo', ['class' => 'h-10 w-auto'])
                     <p class="eyebrow mt-4 text-[0.6rem] text-ocean-300">Rosarito · Baja California · México</p>
                     <p class="mt-6 max-w-xs text-sm leading-relaxed text-sand-200/70">
-                        Un desarrollo integral frente al Pacífico. Respaldado por Grupo FRISA,
-                        diseñado por Cuaik.
+                        <x-t>
+                            <x-slot:es>Un desarrollo integral frente al Pacífico. Respaldado por Grupo FRISA, diseñado por Cuaik.</x-slot:es>
+                            <x-slot:en>An integrated development facing the Pacific. Backed by Grupo FRISA, designed by Cuaik.</x-slot:en>
+                        </x-t>
                     </p>
                 </div>
                 <div>
-                    <p class="eyebrow mb-5 text-[0.6rem] text-ocean-300">El desarrollo</p>
+                    <p class="eyebrow mb-5 text-[0.6rem] text-ocean-300"><x-t><x-slot:es>El desarrollo</x-slot:es><x-slot:en>The development</x-slot:en></x-t></p>
                     <ul class="space-y-3 text-sm">
-                        <li><a href="#esencia" class="transition-colors hover:text-terra-300">Esencia</a></li>
+                        <li><a href="#esencia" class="transition-colors hover:text-terra-300"><x-t><x-slot:es>Esencia</x-slot:es><x-slot:en>Essence</x-slot:en></x-t></a></li>
                         <li><a href="#residencias" class="transition-colors hover:text-terra-300">Casas Candé</a></li>
-                        <li><a href="#residencias" class="transition-colors hover:text-terra-300">Departamentos</a></li>
-                        <li><a href="#amenidades" class="transition-colors hover:text-terra-300">Amenidades</a></li>
-                        <li><a href="#financiamiento" class="transition-colors hover:text-terra-300">Financiamiento</a></li>
+                        <li><a href="#residencias" class="transition-colors hover:text-terra-300"><x-t><x-slot:es>Departamentos</x-slot:es><x-slot:en>Apartments</x-slot:en></x-t></a></li>
+                        <li><a href="#amenidades" class="transition-colors hover:text-terra-300"><x-t><x-slot:es>Amenidades</x-slot:es><x-slot:en>Amenities</x-slot:en></x-t></a></li>
+                        <li><a href="#financiamiento" class="transition-colors hover:text-terra-300"><x-t><x-slot:es>Financiamiento</x-slot:es><x-slot:en>Financing</x-slot:en></x-t></a></li>
                     </ul>
                 </div>
                 <div>
-                    <p class="eyebrow mb-5 text-[0.6rem] text-ocean-300">Contacto</p>
+                    <p class="eyebrow mb-5 text-[0.6rem] text-ocean-300"><x-t><x-slot:es>Contacto</x-slot:es><x-slot:en>Contact</x-slot:en></x-t></p>
                     <ul class="space-y-3 text-sm">
-                        <li><a href="#contacto" class="transition-colors hover:text-terra-300">Agendar visita</a></li>
+                        <li><a href="#contacto" class="transition-colors hover:text-terra-300"><x-t><x-slot:es>Agendar visita</x-slot:es><x-slot:en>Schedule a visit</x-slot:en></x-t></a></li>
                         <li><a href="https://wa.me/526610000000" target="_blank" rel="noopener" class="transition-colors hover:text-terra-300">WhatsApp</a></li>
                         <li><a href="https://www.cande.mx/" target="_blank" rel="noopener" class="transition-colors hover:text-terra-300">cande.mx</a></li>
                     </ul>
                 </div>
             </div>
             <div class="mt-14 border-t border-sand-50/10 pt-8 text-xs leading-relaxed text-sand-200/50">
-                <p>© {{ date('Y') }} Real del Mar. Todos los derechos reservados. · Aviso de Privacidad</p>
-                <p class="mt-2">Las imágenes mostradas son representaciones ilustrativas del proyecto y pueden variar respecto al producto final. La información de tipologías, acabados y financiamiento está sujeta a cambios sin previo aviso.</p>
+                <p>
+                    <x-t>
+                        <x-slot:es>© {{ date('Y') }} Real del Mar. Todos los derechos reservados. · Aviso de Privacidad</x-slot:es>
+                        <x-slot:en>© {{ date('Y') }} Real del Mar. All rights reserved. · Privacy Notice</x-slot:en>
+                    </x-t>
+                </p>
+                <p class="mt-2">
+                    <x-t>
+                        <x-slot:es>Las imágenes mostradas son representaciones ilustrativas del proyecto y pueden variar respecto al producto final. La información de tipologías, acabados y financiamiento está sujeta a cambios sin previo aviso.</x-slot:es>
+                        <x-slot:en>The images shown are illustrative representations of the project and may differ from the final product. Information on layouts, finishes, and financing is subject to change without notice.</x-slot:en>
+                    </x-t>
+                </p>
             </div>
         </div>
     </footer>
 
-    {{-- Floating WhatsApp --}}
+    {{-- Floating WhatsApp (message switches with language) --}}
     <a
+        :href="$store.lang.current === 'en'
+            ? 'https://wa.me/526610000000?text=Hi%2C%20I%27m%20interested%20in%20Real%20del%20Mar.%20Could%20you%20send%20me%20more%20information%3F'
+            : 'https://wa.me/526610000000?text=Hola%2C%20me%20interesa%20Real%20del%20Mar%2C%20%C2%BFme%20pueden%20enviar%20informaci%C3%B3n%3F'"
         href="https://wa.me/526610000000?text=Hola%2C%20me%20interesa%20Real%20del%20Mar%2C%20%C2%BFme%20pueden%20enviar%20informaci%C3%B3n%3F"
         target="_blank" rel="noopener"
         aria-label="WhatsApp"

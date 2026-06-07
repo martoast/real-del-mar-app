@@ -24,13 +24,18 @@
     {{-- Header (constrained) --}}
     <div class="mx-auto mb-14 max-w-7xl px-6 lg:px-10">
         <div class="reveal-group max-w-2xl">
-            <p class="eyebrow text-terra-300">Galería</p>
+            <p class="eyebrow text-terra-300"><x-t><x-slot:es>Galería</x-slot:es><x-slot:en>Gallery</x-slot:en></x-t></p>
             <h2 class="display mt-6 text-4xl font-light text-sand-50 sm:text-5xl">
-                Espacios que <em>se sienten</em>
+                <x-t>
+                    <x-slot:es>Espacios que <em>se sienten</em></x-slot:es>
+                    <x-slot:en>Spaces you <em>can feel</em></x-slot:en>
+                </x-t>
             </h2>
             <p class="mt-6 text-lg leading-relaxed text-sand-100/70">
-                Recorre las residencias, los interiores y la comunidad. Pasa el cursor para
-                detener, haz clic en cualquier imagen para verla en grande.
+                <x-t>
+                    <x-slot:es>Recorre las residencias, los interiores y la comunidad. Pasa el cursor para detener, haz clic en cualquier imagen para verla en grande.</x-slot:es>
+                    <x-slot:en>Explore the residences, interiors, and community. Hover to pause, click any image to view it full size.</x-slot:en>
+                </x-t>
             </p>
         </div>
     </div>

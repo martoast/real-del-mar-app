@@ -6,6 +6,26 @@ import './ocean-bg.js';
 Alpine.plugin(collapse);
 
 /**
+ * Global language store (ES / EN).
+ * The active language is reflected as `data-lang` on <html>; CSS in app.css
+ * shows the matching `.lang-es` / `.lang-en` spans. Persisted to localStorage.
+ * An inline script in the <head> sets data-lang before paint to avoid a flash.
+ */
+document.addEventListener('alpine:init', () => {
+    Alpine.store('lang', {
+        current: document.documentElement.getAttribute('data-lang') || 'es',
+        set(l) {
+            this.current = l;
+            document.documentElement.setAttribute('data-lang', l);
+            try { localStorage.setItem('rdm_lang', l); } catch (e) {}
+        },
+        toggle() {
+            this.set(this.current === 'es' ? 'en' : 'es');
+        },
+    });
+});
+
+/**
  * Multi-step "Agendar visita" form.
  * Step 1: who you are (3 fields). Step 2: what interests you.
  * Template-only for now — submission just shows the success state.

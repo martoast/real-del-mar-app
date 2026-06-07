@@ -20,7 +20,10 @@
         <div class="reveal-group">
             <p class="eyebrow text-sand-200/90">Casas Candé</p>
             <h2 class="display mt-5 text-4xl font-light text-sand-50 sm:text-6xl lg:text-7xl">
-                Donde la arquitectura<br><em>abraza el mar</em>
+                <x-t>
+                    <x-slot:es>Donde la arquitectura<br><em>abraza el mar</em></x-slot:es>
+                    <x-slot:en>Where architecture<br><em>embraces the sea</em></x-slot:en>
+                </x-t>
             </h2>
         </div>
     </div>

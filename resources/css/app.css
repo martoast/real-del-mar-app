@@ -133,6 +133,16 @@ body {
    Recurring editorial primitives
 ------------------------------------------------------------------- */
 
+/* ------------------------------------------------------------------
+   Bilingual visibility — both languages render; CSS shows the active one
+   based on [data-lang] on <html> (set pre-paint + by the Alpine lang store).
+   Default is Spanish; .lang-en only appears when data-lang="en".
+   `revert` restores each element's natural display (inline span, block p).
+------------------------------------------------------------------- */
+.lang-en { display: none; }
+[data-lang="en"] .lang-en { display: revert; }
+[data-lang="en"] .lang-es { display: none; }
+
 /* Eyebrow label — the small all-caps tracker above headlines */
 .eyebrow {
     @apply font-sans text-xs font-semibold uppercase;
