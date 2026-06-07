@@ -1,18 +1,21 @@
 {{-- ============================== GALERÍA (dual-row marquee) ============================== --}}
 @php
-    // Row 1 — interiores de los departamentos. Row 2 — exteriores & comunidad.
+    // Row 1 — interiores (casas + departamentos). Row 2 — exteriores & comunidad.
     $rowCasas = [
+        ['img' => 'rdm-casa-sala.jpg', 'alt' => 'Sala de casa Candé'],
+        ['img' => 'rdm-casa-comedor.jpg', 'alt' => 'Comedor con vista al mar'],
         ['img' => 'rdm-depto-a-sala.jpg', 'alt' => 'Sala y comedor del Departamento A'],
-        ['img' => 'rdm-depto-a-recamara.jpg', 'alt' => 'Recámara con vista al mar'],
+        ['img' => 'rdm-casa-recamara.jpg', 'alt' => 'Recámara principal'],
         ['img' => 'rdm-depto-b-sala.jpg', 'alt' => 'Sala y comedor del Departamento B'],
+        ['img' => 'rdm-casa-barra.jpg', 'alt' => 'Barra y bar de casa Candé'],
         ['img' => 'rdm-depto-a-terraza.jpg', 'alt' => 'Terraza frente al Pacífico'],
-        ['img' => 'rdm-depto-a-01.jpg', 'alt' => 'Interior del Departamento A'],
-        ['img' => 'rdm-depto-b-01.jpg', 'alt' => 'Comedor del Departamento B'],
     ];
     $rowComunidad = [
+        ['img' => 'rdm-casa-fachada.jpg', 'alt' => 'Fachada de casa Candé al atardecer'],
+        ['img' => 'rdm-casa-esquina.jpg', 'alt' => 'Casas Candé en esquina'],
+        ['img' => 'rdm-casas-aerea.jpg', 'alt' => 'Vista aérea de las casas'],
         ['img' => 'rdm-edificios-golf.jpg', 'alt' => 'Torres sobre el campo de golf'],
         ['img' => 'rdm-torres-sunset.jpg', 'alt' => 'Torres al atardecer'],
-        ['img' => 'rdm-torres-dia.jpg', 'alt' => 'Torres frente al mar'],
         ['img' => 'rdm-caseta.jpg', 'alt' => 'Acceso y caseta de seguridad'],
         ['img' => 'rdm-masterplan.jpg', 'alt' => 'Vista aérea de Real del Mar'],
     ];

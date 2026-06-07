@@ -75,7 +75,7 @@
         <div x-show="tab === 'casas'" x-transition:enter="transition duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="mt-16">
             <div class="grid items-center gap-12 lg:grid-cols-2">
                 <div class="overflow-hidden rounded-2xl">
-                    <img src="{{ asset('images/cande-exterior.png') }}" alt="Casa Candé"
+                    <img src="{{ asset('images/rdm-casa-fachada.jpg') }}" alt="Casa Candé"
                         class="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105">
                 </div>
                 <div>

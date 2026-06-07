@@ -28,11 +28,11 @@
             {{-- Offset image stack --}}
             <div class="reveal relative lg:col-span-5">
                 <div class="overflow-hidden rounded-2xl">
-                    <img src="{{ asset('images/rdm-depto-a-terraza.jpg') }}" alt="Terraza con vista al Pacífico"
+                    <img src="{{ asset('images/rdm-casa-patio.jpg') }}" alt="Patio de casa Candé al atardecer"
                         class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105">
                 </div>
                 <div class="absolute -bottom-8 -left-8 hidden w-48 overflow-hidden rounded-2xl border-4 border-sand-50 shadow-xl sm:block">
-                    <img src="{{ asset('images/amenidad-firepit.png') }}" alt="Fire pit al atardecer"
+                    <img src="{{ asset('images/rdm-casa-sala.jpg') }}" alt="Sala de casa Candé"
                         class="aspect-square w-full object-cover">
                 </div>
             </div>
