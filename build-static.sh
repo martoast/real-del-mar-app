@@ -30,7 +30,7 @@ sed -i '' "s#http://127.0.0.1:$PORT/#/#g; s#http://localhost:$PORT/#/#g; s#http:
 perl -pi -e "s{http:(?:\\\\*/){2}127\\.0\\.0\\.1:$PORT}{}g; s{http:(?:\\\\*/){2}localhost(?::$PORT)?}{}g" "$OUT/index.html"
 
 echo "▸ Copying static assets…"
-for d in build images videos fonts; do cp -R "public/$d" "$OUT/$d"; done
+for d in site-assets images videos fonts; do cp -R "public/$d" "$OUT/$d"; done
 cp public/favicon.ico public/robots.txt "$OUT/" 2>/dev/null || true
 
 echo "▸ Writing cache headers (no netlify.toml/_redirects — keeps drag-drop clean)…"
