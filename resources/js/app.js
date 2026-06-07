@@ -1,5 +1,6 @@
 import Alpine from 'alpinejs';
 import collapse from '@alpinejs/collapse';
+import './preloader.js';
 import './reveal.js';
 import './ocean-bg.js';
 

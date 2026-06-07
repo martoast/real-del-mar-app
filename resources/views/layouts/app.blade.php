@@ -17,6 +17,12 @@
         })();
     </script>
 
+    {{-- Lock scroll during the first-load preloader (safety-unlocks after 14s) --}}
+    <script>
+        document.documentElement.classList.add('is-loading');
+        setTimeout(function () { document.documentElement.classList.remove('is-loading'); }, 14000);
+    </script>
+
     <title>{{ $title ?? 'Real del Mar — Vive frente al Pacífico · Rosarito, Baja California' }}</title>
     <meta name="description" content="{{ $description ?? 'Real del Mar es un desarrollo integral frente al Pacífico en la zona costa de Baja California. Casas y departamentos de alto nivel con vistas al mar y al campo de golf.' }}">
 
@@ -32,6 +38,17 @@
     @scroll.window.passive="navSolid = window.scrollY > 40"
     :class="navOpen ? 'overflow-hidden lg:overflow-auto' : ''"
 >
+
+    {{-- ============================== PRELOADER ============================== --}}
+    <div id="preloader" class="fixed inset-0 z-[100] flex items-center justify-center bg-ocean-950">
+        <div class="preloader-mark flex flex-col items-center">
+            @include('partials.logo', ['class' => 'h-14 w-auto text-sand-50'])
+            <div class="mt-10 h-px w-44 overflow-hidden rounded-full bg-sand-50/15">
+                <div id="preloader-bar" class="h-full w-0 rounded-full bg-terra-400 transition-[width] duration-300 ease-out"></div>
+            </div>
+            <p id="preloader-pct" class="eyebrow mt-4 text-[0.55rem] text-sand-200/50">0%</p>
+        </div>
+    </div>
 
     @php
         $navLinks = [
