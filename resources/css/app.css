@@ -80,7 +80,10 @@ body {
 /* Display headline base */
 .display {
     @apply font-display;
-    font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
+    /* Moderate optical size = clean, classic letterforms (opsz 144 makes the
+       thin strokes spindly); WONK 0 = no quirky alternate glyphs. */
+    font-variation-settings: 'opsz' 72, 'SOFT' 0, 'WONK' 0;
+    font-feature-settings: 'liga' 1, 'dlig' 0;
     line-height: 1.05;
 }
 
@@ -88,7 +91,8 @@ body {
 .display em,
 .accent-italic {
     @apply font-display italic font-light;
-    font-variation-settings: 'opsz' 144, 'SOFT' 50, 'WONK' 1;
+    font-variation-settings: 'opsz' 72, 'SOFT' 0, 'WONK' 0;
+    font-feature-settings: 'liga' 1, 'dlig' 0;
 }
 
 /* Scroll-reveal initial states (driven by reveal.js) */
