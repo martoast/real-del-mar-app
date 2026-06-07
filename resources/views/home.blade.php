@@ -4,10 +4,9 @@
     @include('partials.hero')
     @include('partials.esencia')
     @include('partials.residencias')
-    @include('partials.interiores')
+    @include('partials.galeria')
     @include('partials.cta-video')
     @include('partials.amenidades')
-    @include('partials.galeria')
     @include('partials.ubicacion')
     @include('partials.contacto')
 @endsection
