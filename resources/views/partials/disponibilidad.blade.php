@@ -157,23 +157,21 @@
             </div>
 
             <div class="mt-12 grid items-center gap-10 lg:grid-cols-5 lg:gap-12">
-                {{-- The elevation plan (light card so the building drawing reads) --}}
+                {{-- The elevation plan (directly on the band, like the houses plan) --}}
                 <div class="lg:col-span-3">
-                    <div class="relative mx-auto w-full max-w-2xl overflow-hidden rounded-2xl bg-sand-50 p-4 shadow-2xl shadow-ink/20 sm:p-6">
-                        <div class="relative">
-                            <img src="{{ asset('images/departamentos-plan.svg') }}" alt="Plano de elevación de las torres de Real del Mar"
-                                class="pointer-events-none block w-full">
-                            <svg viewBox="0 0 1580.7 800.6" class="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg">
-                                @foreach ($apts as $apt)
-                                    <path d="{{ $apt['d'] }}"
-                                        class="plan-unit plan-unit--{{ $apt['status'] }}"
-                                        :class="{ 'is-dim': !shown('{{ $apt['status'] }}') }"
-                                        @mouseenter="pick({ n: '{{ $apt['n'] }}', m2: {{ $apt['m2'] ?? 'null' }}, status: '{{ $apt['status'] }}' })"
-                                        @click="pick({ n: '{{ $apt['n'] }}', m2: {{ $apt['m2'] ?? 'null' }}, status: '{{ $apt['status'] }}' })"
-                                    ></path>
-                                @endforeach
-                            </svg>
-                        </div>
+                    <div class="relative mx-auto w-full max-w-2xl">
+                        <img src="{{ asset('images/departamentos-plan.svg') }}" alt="Plano de elevación de las torres de Real del Mar"
+                            class="pointer-events-none absolute inset-0 h-full w-full opacity-60 invert">
+                        <svg viewBox="0 0 1580.7 800.6" class="relative w-full" xmlns="http://www.w3.org/2000/svg">
+                            @foreach ($apts as $apt)
+                                <path d="{{ $apt['d'] }}"
+                                    class="plan-unit plan-unit--{{ $apt['status'] }}"
+                                    :class="{ 'is-dim': !shown('{{ $apt['status'] }}') }"
+                                    @mouseenter="pick({ n: '{{ $apt['n'] }}', m2: {{ $apt['m2'] ?? 'null' }}, status: '{{ $apt['status'] }}' })"
+                                    @click="pick({ n: '{{ $apt['n'] }}', m2: {{ $apt['m2'] ?? 'null' }}, status: '{{ $apt['status'] }}' })"
+                                ></path>
+                            @endforeach
+                        </svg>
                     </div>
                 </div>
 
