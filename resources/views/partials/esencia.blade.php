@@ -28,7 +28,7 @@
             {{-- Offset image stack --}}
             <div class="reveal relative lg:col-span-5">
                 <div class="overflow-hidden rounded-2xl">
-                    <img src="{{ asset('images/terraza.png') }}" alt="Terraza con vista al Pacífico"
+                    <img src="{{ asset('images/rdm-depto-a-terraza.jpg') }}" alt="Terraza con vista al Pacífico"
                         class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105">
                 </div>
                 <div class="absolute -bottom-8 -left-8 hidden w-48 overflow-hidden rounded-2xl border-4 border-sand-50 shadow-xl sm:block">

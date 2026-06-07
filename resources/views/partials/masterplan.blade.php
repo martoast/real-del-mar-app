@@ -18,7 +18,7 @@
         </div>
 
         <div class="reveal relative mt-14 overflow-hidden rounded-2xl">
-            <img src="{{ asset('images/masterplan.png') }}" alt="Masterplan aéreo de Real del Mar"
+            <img src="{{ asset('images/rdm-masterplan.jpg') }}" alt="Masterplan aéreo de Real del Mar"
                 class="w-full object-cover">
             <div class="absolute inset-0 ring-1 ring-inset ring-ink/10"></div>
         </div>

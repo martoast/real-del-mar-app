@@ -22,7 +22,7 @@
 
     <meta property="og:title" content="Real del Mar — Vive frente al Pacífico">
     <meta property="og:description" content="Desarrollo integral frente al Pacífico en Rosarito, Baja California. Respaldado por Grupo FRISA, diseñado por Cuaik.">
-    <meta property="og:image" content="{{ asset('images/hero.png') }}">
+    <meta property="og:image" content="{{ asset('images/rdm-edificios-golf.jpg') }}">
     <meta property="og:type" content="website">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])

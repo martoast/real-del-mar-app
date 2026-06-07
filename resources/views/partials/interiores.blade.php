@@ -44,12 +44,12 @@
             {{-- Image column --}}
             <div class="space-y-8 lg:col-span-7">
                 <div class="reveal overflow-hidden rounded-2xl">
-                    <img src="{{ asset('images/interior-living.png') }}" alt="Sala con pisos de roble, vigas de madera y vista al mar"
+                    <img src="{{ asset('images/rdm-depto-a-sala.jpg') }}" alt="Sala con pisos de roble, vigas de madera y vista al mar"
                         class="aspect-[16/11] w-full object-cover transition-transform duration-700 hover:scale-105">
                 </div>
                 <div class="reveal grid gap-8 sm:grid-cols-5">
                     <div class="overflow-hidden rounded-2xl sm:col-span-3">
-                        <img src="{{ asset('images/interior-bano.png') }}" alt="Baño con acabados beige y grifería negro mate"
+                        <img src="{{ asset('images/rdm-depto-a-recamara.jpg') }}" alt="Recámara de departamento con vista al mar"
                             class="aspect-[4/3] h-full w-full object-cover transition-transform duration-700 hover:scale-105">
                     </div>
                     <div class="flex flex-col justify-center rounded-2xl bg-ocean-900 p-8 sm:col-span-2">

@@ -1,18 +1,20 @@
 {{-- ============================== GALERÍA (dual-row marquee) ============================== --}}
 @php
-    // Row 1 — interiores & residencias. Row 2 — comunidad & amenidades.
+    // Row 1 — interiores de los departamentos. Row 2 — exteriores & comunidad.
     $rowCasas = [
-        ['img' => 'cande-exterior.png', 'alt' => 'Fachada de casa Candé'],
-        ['img' => 'interior-living.png', 'alt' => 'Sala con vista al mar'],
-        ['img' => 'terraza.png', 'alt' => 'Terraza frente al Pacífico'],
-        ['img' => 'interior-bano.png', 'alt' => 'Baño con acabados naturales'],
+        ['img' => 'rdm-depto-a-sala.jpg', 'alt' => 'Sala y comedor del Departamento A'],
+        ['img' => 'rdm-depto-a-recamara.jpg', 'alt' => 'Recámara con vista al mar'],
+        ['img' => 'rdm-depto-b-sala.jpg', 'alt' => 'Sala y comedor del Departamento B'],
+        ['img' => 'rdm-depto-a-terraza.jpg', 'alt' => 'Terraza frente al Pacífico'],
+        ['img' => 'rdm-depto-a-01.jpg', 'alt' => 'Interior del Departamento A'],
+        ['img' => 'rdm-depto-b-01.jpg', 'alt' => 'Comedor del Departamento B'],
     ];
     $rowComunidad = [
-        ['img' => 'torres-exterior.png', 'alt' => 'Torres de departamentos'],
-        ['img' => 'amenidad-alberca.png', 'alt' => 'Alberca de borde infinito'],
-        ['img' => 'amenidad-padel.png', 'alt' => 'Cancha de pádel'],
-        ['img' => 'amenidad-firepit.png', 'alt' => 'Fire pits al atardecer'],
-        ['img' => 'masterplan.png', 'alt' => 'Masterplan de Real del Mar'],
+        ['img' => 'rdm-edificios-golf.jpg', 'alt' => 'Torres sobre el campo de golf'],
+        ['img' => 'rdm-torres-sunset.jpg', 'alt' => 'Torres al atardecer'],
+        ['img' => 'rdm-torres-dia.jpg', 'alt' => 'Torres frente al mar'],
+        ['img' => 'rdm-caseta.jpg', 'alt' => 'Acceso y caseta de seguridad'],
+        ['img' => 'rdm-masterplan.jpg', 'alt' => 'Vista aérea de Real del Mar'],
     ];
 @endphp
 
