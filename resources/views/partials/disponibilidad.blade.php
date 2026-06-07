@@ -93,7 +93,7 @@
 
                 {{-- Detail panel --}}
                 <div class="lg:col-span-2">
-                    <div class="rounded-2xl border border-sand-50/15 bg-ocean-900/60 p-8 backdrop-blur-sm lg:p-10">
+                    <div class="flex min-h-[19rem] flex-col justify-center rounded-2xl border border-sand-50/15 bg-ocean-900/60 p-8 backdrop-blur-sm lg:min-h-[22rem] lg:p-10">
                         <template x-if="!active">
                             <div class="py-6">
                                 <p class="eyebrow text-[0.6rem] text-ocean-300">Casas Candé</p>
@@ -177,7 +177,7 @@
 
                 {{-- Detail panel --}}
                 <div class="lg:col-span-2">
-                    <div class="rounded-2xl border border-sand-50/15 bg-ocean-900/60 p-8 backdrop-blur-sm lg:p-10">
+                    <div class="flex min-h-[19rem] flex-col justify-center rounded-2xl border border-sand-50/15 bg-ocean-900/60 p-8 backdrop-blur-sm lg:min-h-[22rem] lg:p-10">
                         <template x-if="!active">
                             <div class="py-6">
                                 <p class="eyebrow text-[0.6rem] text-ocean-300"><x-t><x-slot:es>Departamentos · 3 torres</x-slot:es><x-slot:en>Apartments · 3 towers</x-slot:en></x-t></p>
