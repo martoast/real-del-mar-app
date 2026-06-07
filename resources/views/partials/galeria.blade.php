@@ -1,4 +1,4 @@
-{{-- ============================== GALERÍA (dual-row marquee) ============================== --}}
+{{-- ============================== GALERÍA (dual-row marquee + slideshow lightbox) ============================== --}}
 @php
     // Row 1 — interiores (casas + departamentos). Row 2 — exteriores & comunidad.
     $rowCasas = [
@@ -19,12 +19,27 @@
         ['img' => 'rdm-caseta.jpg', 'alt' => 'Acceso y caseta de seguridad'],
         ['img' => 'rdm-masterplan.jpg', 'alt' => 'Vista aérea de Real del Mar'],
     ];
+
+    // Flat, ordered list shared by the lightbox slideshow. Each gallery
+    // button opens at its index in this list (both marquee copies map to it).
+    $casasCount = count($rowCasas);
+    $lightbox = array_map(
+        fn ($i) => ['src' => asset('images/' . $i['img']), 'alt' => $i['alt']],
+        array_merge($rowCasas, $rowComunidad),
+    );
 @endphp
 
 <section
     id="galeria"
     class="overflow-hidden bg-ocean-950 py-24 lg:py-32"
-    x-data="{ lbOpen: false, lbSrc: '', lbAlt: '', open(s, a) { this.lbSrc = s; this.lbAlt = a; this.lbOpen = true; } }"
+    x-data="{
+        items: @js($lightbox),
+        i: 0,
+        open: false,
+        openAt(idx) { this.i = idx; this.open = true; },
+        next() { this.i = (this.i + 1) % this.items.length; },
+        prev() { this.i = (this.i - 1 + this.items.length) % this.items.length; },
+    }"
 >
     {{-- Header (constrained) --}}
     <div class="mx-auto mb-14 max-w-7xl px-6 lg:px-10">
@@ -38,8 +53,8 @@
             </h2>
             <p class="mt-6 text-lg leading-relaxed text-sand-100/70">
                 <x-t>
-                    <x-slot:es>Recorre las residencias, los interiores y la comunidad. Pasa el cursor para detener, haz clic en cualquier imagen para verla en grande.</x-slot:es>
-                    <x-slot:en>Explore the residences, interiors, and community. Hover to pause, click any image to view it full size.</x-slot:en>
+                    <x-slot:es>Recorre las residencias y la comunidad. Pasa el cursor para detener, o haz clic en cualquier imagen para abrir la galería completa.</x-slot:es>
+                    <x-slot:en>Explore the residences and community. Hover to pause, or click any image to open the full slideshow.</x-slot:en>
                 </x-t>
             </p>
         </div>
@@ -52,10 +67,10 @@
             <div class="marquee-track marquee-track--rtl">
                 @foreach (range(1, 2) as $copy)
                     <div class="flex" @if ($copy === 2) aria-hidden="true" @endif>
-                        @foreach ($rowCasas as $item)
+                        @foreach ($rowCasas as $idx => $item)
                             <button
                                 type="button"
-                                @click="open('{{ asset('images/' . $item['img']) }}', '{{ $item['alt'] }}')"
+                                @click="openAt({{ $idx }})"
                                 class="group mr-5 block shrink-0 overflow-hidden rounded-2xl"
                                 tabindex="{{ $copy === 2 ? '-1' : '0' }}"
                             >
@@ -77,10 +92,10 @@
             <div class="marquee-track marquee-track--ltr">
                 @foreach (range(1, 2) as $copy)
                     <div class="flex" @if ($copy === 2) aria-hidden="true" @endif>
-                        @foreach ($rowComunidad as $item)
+                        @foreach ($rowComunidad as $idx => $item)
                             <button
                                 type="button"
-                                @click="open('{{ asset('images/' . $item['img']) }}', '{{ $item['alt'] }}')"
+                                @click="openAt({{ $casasCount + $idx }})"
                                 class="group mr-5 block shrink-0 overflow-hidden rounded-2xl"
                                 tabindex="{{ $copy === 2 ? '-1' : '0' }}"
                             >
@@ -98,24 +113,43 @@
         </div>
     </div>
 
-    {{-- Lightbox --}}
+    {{-- Lightbox slideshow --}}
     <div
         x-cloak
-        x-show="lbOpen"
+        x-show="open"
         x-transition.opacity.duration.300ms
-        @keydown.escape.window="lbOpen = false"
-        @click="lbOpen = false"
+        @keydown.escape.window="open = false"
+        @keydown.arrow-right.window="open && next()"
+        @keydown.arrow-left.window="open && prev()"
+        @click="open = false"
         class="fixed inset-0 z-[60] flex items-center justify-center bg-ocean-950/95 p-6 backdrop-blur-sm"
     >
-        <button
-            type="button"
-            @click="lbOpen = false"
-            class="absolute right-6 top-6 flex h-12 w-12 items-center justify-center rounded-full border border-sand-50/20 text-2xl text-sand-50 transition-colors hover:bg-sand-50/10"
-            aria-label="Cerrar"
-        >&times;</button>
-        <figure @click.stop class="max-h-[88vh] max-w-6xl">
-            <img :src="lbSrc" :alt="lbAlt" class="max-h-[80vh] w-auto rounded-2xl object-contain shadow-2xl">
-            <figcaption class="eyebrow mt-4 text-center text-[0.6rem] text-sand-200/70" x-text="lbAlt"></figcaption>
+        {{-- Close --}}
+        <button type="button" @click="open = false"
+            class="absolute right-5 top-5 z-10 flex h-12 w-12 items-center justify-center rounded-full border border-sand-50/20 text-2xl text-sand-50 transition-colors hover:bg-sand-50/10"
+            aria-label="Cerrar">&times;</button>
+
+        {{-- Prev --}}
+        <button type="button" @click.stop="prev()"
+            class="absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-sand-50/20 text-sand-50 transition-colors hover:bg-sand-50/10 sm:left-8 sm:h-14 sm:w-14"
+            aria-label="Anterior">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+
+        {{-- Next --}}
+        <button type="button" @click.stop="next()"
+            class="absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-sand-50/20 text-sand-50 transition-colors hover:bg-sand-50/10 sm:right-8 sm:h-14 sm:w-14"
+            aria-label="Siguiente">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </button>
+
+        {{-- Image + caption --}}
+        <figure @click.stop class="flex max-h-[88vh] max-w-6xl flex-col items-center">
+            <img :src="items[i].src" :alt="items[i].alt" class="max-h-[78vh] w-auto rounded-2xl object-contain shadow-2xl">
+            <figcaption class="mt-4 flex items-center gap-3 text-sand-200/70">
+                <span class="eyebrow text-[0.6rem]" x-text="items[i].alt"></span>
+                <span class="text-[0.6rem] text-sand-200/40" x-text="(i + 1) + ' / ' + items.length"></span>
+            </figcaption>
         </figure>
     </div>
 </section>
