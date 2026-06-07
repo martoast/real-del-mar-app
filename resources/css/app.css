@@ -298,3 +298,24 @@ body {
 @media (prefers-reduced-motion: no-preference) {
     .plan-lot--available { animation: planPulse 3s ease-in-out infinite; }
 }
+
+/* Apartments elevation — translucent tints over the line drawing on a light
+   card, so the building facade (windows, balconies, roof) stays visible. */
+.plan-unit {
+    stroke: rgba(35, 32, 25, 0.5);
+    stroke-width: 1.5px;
+    stroke-linejoin: round;
+    cursor: pointer;
+    mix-blend-mode: multiply;
+    transition: opacity 0.3s ease, filter 0.25s ease;
+}
+.plan-unit--available { fill: var(--color-terra-400); opacity: 0.42; }
+.plan-unit--sold      { fill: var(--color-stone-warm); opacity: 0.55; }
+.plan-unit--reserved  { fill: var(--color-ocean-400); opacity: 0.45; }
+.plan-unit:hover { opacity: 0.8; filter: saturate(1.15); stroke: var(--color-ink); }
+.plan-unit.is-dim { opacity: 0.06 !important; }
+
+@keyframes unitPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.55; } }
+@media (prefers-reduced-motion: no-preference) {
+    .plan-unit--available { animation: unitPulse 3.2s ease-in-out infinite; }
+}
