@@ -8,7 +8,6 @@
     @include('partials.cta-video')
     @include('partials.amenidades')
     @include('partials.galeria')
-    @include('partials.masterplan')
     @include('partials.ubicacion')
     @include('partials.mapa')
     @include('partials.respaldo')

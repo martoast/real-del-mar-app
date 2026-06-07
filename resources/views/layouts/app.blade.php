@@ -37,7 +37,7 @@
         $navLinks = [
             ['es' => 'Residencias', 'en' => 'Residences', 'href' => '#residencias'],
             ['es' => 'Amenidades', 'en' => 'Amenities', 'href' => '#amenidades'],
-            ['es' => 'Masterplan', 'en' => 'Masterplan', 'href' => '#masterplan'],
+            ['es' => 'Galería', 'en' => 'Gallery', 'href' => '#galeria'],
             ['es' => 'Ubicación', 'en' => 'Location', 'href' => '#ubicacion'],
         ];
     @endphp
