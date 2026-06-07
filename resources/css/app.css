@@ -298,13 +298,3 @@ body {
 @media (prefers-reduced-motion: no-preference) {
     .plan-lot--available { animation: planPulse 3s ease-in-out infinite; }
 }
-
-/* 3D tilt wrapper */
-.plan-tilt {
-    transition: transform 0.25s ease-out;
-    transform-style: preserve-3d;
-    will-change: transform;
-}
-@media (prefers-reduced-motion: reduce) {
-    .plan-tilt { transform: none !important; }
-}

@@ -9,15 +9,8 @@
     x-data="{
         filter: 'all',
         active: null,
-        tiltX: 0, tiltY: 0,
         shown(s) { return this.filter === 'all' || this.filter === s; },
         pick(l) { this.active = l; },
-        tilt(e) {
-            const r = this.$refs.stage.getBoundingClientRect();
-            this.tiltY = (((e.clientX - r.left) / r.width) - 0.5) * 11;
-            this.tiltX = -(((e.clientY - r.top) / r.height) - 0.5) * 11;
-        },
-        reset() { this.tiltX = 0; this.tiltY = 0; },
     }">
     <div class="mx-auto max-w-7xl px-6 lg:px-10">
         {{-- Header --}}
@@ -76,10 +69,7 @@
             <div class="mt-12 grid items-center gap-10 lg:grid-cols-5 lg:gap-12">
                 {{-- The plan (3D tilt) --}}
                 <div class="lg:col-span-3">
-                    <div x-ref="stage"
-                        @mousemove="tilt($event)" @mouseleave="reset()"
-                        class="plan-tilt relative mx-auto w-full max-w-xl"
-                        :style="`transform: perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`">
+                    <div class="relative mx-auto w-full max-w-xl">
                         {{-- Line-art background --}}
                         <img src="{{ asset('images/casas-plan.svg') }}" alt=""
                             class="pointer-events-none absolute inset-0 h-full w-full opacity-60 invert">
