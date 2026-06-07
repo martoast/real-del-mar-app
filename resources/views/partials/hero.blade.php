@@ -28,4 +28,12 @@
         </div>
     </div>
 
+    {{-- Scroll cue (arrow only) --}}
+    <a href="#esencia"
+       class="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
+       aria-label="Bajar">
+        <svg class="h-6 w-6 animate-bounce text-sand-100/80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+        </svg>
+    </a>
 </section>
