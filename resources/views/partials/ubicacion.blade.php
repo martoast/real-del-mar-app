@@ -25,15 +25,15 @@
                 </p>
 
                 {{-- Drive times --}}
-                <div class="reveal-group mt-10 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-sand-50/15 bg-sand-50/10 backdrop-blur-sm">
+                <div class="reveal-group mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-sand-50/15 bg-sand-50/10 backdrop-blur-sm sm:grid-cols-3">
                     @foreach ([
                         ['t' => '20 min', 'es' => 'Tijuana', 'en' => 'Tijuana'],
                         ['t' => '10 min', 'es' => 'Rosarito', 'en' => 'Rosarito'],
                         ['t' => '40 min', 'es' => 'Frontera San Diego', 'en' => 'San Diego border'],
                     ] as $destino)
-                        <div class="bg-ocean-950/40 px-4 py-7 text-center sm:px-6">
-                            <p class="display text-3xl font-light text-sand-50 sm:text-4xl">{{ $destino['t'] }}</p>
-                            <p class="eyebrow mt-2 text-[0.55rem] text-ocean-300"><span class="lang-es">{{ $destino['es'] }}</span><span class="lang-en">{{ $destino['en'] }}</span></p>
+                        <div class="flex items-center justify-center gap-3 bg-ocean-950/40 px-5 py-5 text-center sm:flex-col sm:gap-0 sm:px-6 sm:py-7">
+                            <p class="display whitespace-nowrap text-3xl font-light leading-none text-sand-50 sm:text-4xl">{{ $destino['t'] }}</p>
+                            <p class="eyebrow text-[0.55rem] text-ocean-300 sm:mt-2"><span class="lang-es">{{ $destino['es'] }}</span><span class="lang-en">{{ $destino['en'] }}</span></p>
                         </div>
                     @endforeach
                 </div>
