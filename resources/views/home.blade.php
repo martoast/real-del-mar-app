@@ -6,7 +6,6 @@
     @include('partials.residencias')
     @include('partials.disponibilidad')
     @include('partials.galeria')
-    @include('partials.cta-video')
     @include('partials.amenidades')
     @include('partials.ubicacion')
     @include('partials.contacto')

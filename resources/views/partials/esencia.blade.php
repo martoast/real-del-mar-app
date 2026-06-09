@@ -25,15 +25,19 @@
                 </p>
             </div>
 
-            {{-- Offset image stack --}}
+            {{-- Casas Candé video --}}
             <div class="reveal relative lg:col-span-5">
-                <div class="overflow-hidden rounded-2xl">
-                    <img src="{{ asset('images/rdm-casa-patio.jpg') }}" alt="Patio de casa Candé al atardecer"
-                        class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105">
-                </div>
-                <div class="absolute -bottom-8 -left-8 hidden w-48 overflow-hidden rounded-2xl border-4 border-sand-50 shadow-xl sm:block">
-                    <img src="{{ asset('images/rdm-casa-sala.jpg') }}" alt="Sala de casa Candé"
-                        class="aspect-square w-full object-cover">
+                <div class="overflow-hidden rounded-2xl bg-ocean-950 shadow-xl shadow-ink/10">
+                    <video
+                        class="aspect-[4/5] w-full object-cover"
+                        autoplay
+                        loop
+                        muted
+                        playsinline
+                        poster="{{ asset('images/casa-cande-poster.jpg') }}"
+                    >
+                        <source src="{{ asset('videos/casa-cande.mp4') }}" type="video/mp4">
+                    </video>
                 </div>
             </div>
         </div>
