@@ -62,11 +62,11 @@
             </h2>
             <div class="mt-10 inline-flex rounded-full border border-ink/10 bg-sand-50 p-1.5">
                 <button @click="$store.product.tab = 'casas'"
-                    class="eyebrow rounded-full px-7 py-3 text-[0.65rem] transition-all duration-300"
+                    class="eyebrow whitespace-nowrap rounded-full px-5 py-3 text-[0.65rem] transition-all duration-300 sm:px-7"
                     :class="$store.product.tab === 'casas' ? 'bg-ink text-sand-50' : 'text-ink-soft hover:text-ink'"
                 >Casas Candé</button>
                 <button @click="$store.product.tab = 'depas'"
-                    class="eyebrow rounded-full px-7 py-3 text-[0.65rem] transition-all duration-300"
+                    class="eyebrow whitespace-nowrap rounded-full px-5 py-3 text-[0.65rem] transition-all duration-300 sm:px-7"
                     :class="$store.product.tab === 'depas' ? 'bg-ink text-sand-50' : 'text-ink-soft hover:text-ink'"
                 ><span class="lang-es">Departamentos</span><span class="lang-en">Apartments</span></button>
             </div>
@@ -86,8 +86,8 @@
                 <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ocean-950/85 via-ocean-950/10 to-transparent"></div>
 
                 {{-- Glass info panel --}}
-                <div class="absolute inset-x-0 bottom-0 p-6 sm:max-w-lg lg:p-10">
-                    <div class="rounded-2xl border border-sand-50/15 bg-ocean-950/40 p-6 backdrop-blur-md lg:p-8">
+                <div class="relative z-10 -mt-16 p-4 sm:absolute sm:inset-x-0 sm:bottom-0 sm:z-auto sm:mt-0 sm:max-w-lg sm:p-6 lg:p-10">
+                    <div class="rounded-2xl border border-sand-50/15 bg-ocean-950/40 p-5 backdrop-blur-md sm:p-6 lg:p-8">
                         <p class="eyebrow text-[0.6rem] text-terra-300"><x-t><x-slot:es>Solo 37 residencias · 3 etapas</x-slot:es><x-slot:en>Only 37 residences · 3 phases</x-slot:en></x-t></p>
                         <h3 class="display mt-3 text-3xl font-light text-sand-50 sm:text-4xl">Casas <em>Candé</em></h3>
                         <p class="mt-4 text-sm leading-relaxed text-sand-100/85">
@@ -105,10 +105,10 @@
             </div>
 
             {{-- Thumbnail gallery --}}
-            <div class="mt-4 flex gap-3 overflow-x-auto pb-1">
+            <div class="-mx-6 mt-4 flex snap-x gap-3 overflow-x-auto px-6 pb-1 lg:mx-0 lg:px-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 @foreach ($casasGallery as $img)
                     <button type="button" @click="show('{{ asset('images/' . $img) }}')"
-                        class="relative h-16 w-24 shrink-0 overflow-hidden rounded-lg transition-all duration-300 sm:h-20 sm:w-32"
+                        class="relative h-16 w-24 shrink-0 snap-start overflow-hidden rounded-lg transition-all duration-300 sm:h-20 sm:w-32"
                         :class="active === '{{ asset('images/' . $img) }}' ? 'ring-2 ring-terra-400 ring-offset-2 ring-offset-sand-100' : 'opacity-55 hover:opacity-100'">
                         <img src="{{ asset('images/' . $img) }}" alt="" loading="lazy" class="h-full w-full object-cover">
                     </button>
@@ -155,8 +155,8 @@
                     :class="loading ? 'opacity-0' : 'opacity-100'">
                 <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ocean-950/85 via-ocean-950/10 to-transparent"></div>
 
-                <div class="absolute inset-x-0 bottom-0 p-6 sm:max-w-lg lg:p-10">
-                    <div class="rounded-2xl border border-sand-50/15 bg-ocean-950/40 p-6 backdrop-blur-md lg:p-8">
+                <div class="relative z-10 -mt-16 p-4 sm:absolute sm:inset-x-0 sm:bottom-0 sm:z-auto sm:mt-0 sm:max-w-lg sm:p-6 lg:p-10">
+                    <div class="rounded-2xl border border-sand-50/15 bg-ocean-950/40 p-5 backdrop-blur-md sm:p-6 lg:p-8">
                         <p class="eyebrow text-[0.6rem] text-terra-300"><x-t><x-slot:es>3 torres · 18 unidades por torre</x-slot:es><x-slot:en>3 towers · 18 units per tower</x-slot:en></x-t></p>
                         <h3 class="display mt-3 text-3xl font-light text-sand-50 sm:text-4xl"><span class="lang-es">Departamentos</span><span class="lang-en">Apartments</span> <em>Real del Mar</em></h3>
                         <p class="mt-4 text-sm leading-relaxed text-sand-100/85">
@@ -174,10 +174,10 @@
             </div>
 
             {{-- Thumbnail gallery --}}
-            <div class="mt-4 flex gap-3 overflow-x-auto pb-1">
+            <div class="-mx-6 mt-4 flex snap-x gap-3 overflow-x-auto px-6 pb-1 lg:mx-0 lg:px-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 @foreach ($depasGallery as $img)
                     <button type="button" @click="show('{{ asset('images/' . $img) }}')"
-                        class="relative h-16 w-24 shrink-0 overflow-hidden rounded-lg transition-all duration-300 sm:h-20 sm:w-32"
+                        class="relative h-16 w-24 shrink-0 snap-start overflow-hidden rounded-lg transition-all duration-300 sm:h-20 sm:w-32"
                         :class="active === '{{ asset('images/' . $img) }}' ? 'ring-2 ring-terra-400 ring-offset-2 ring-offset-sand-100' : 'opacity-55 hover:opacity-100'">
                         <img src="{{ asset('images/' . $img) }}" alt="" loading="lazy" class="h-full w-full object-cover">
                     </button>
