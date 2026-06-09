@@ -178,11 +178,18 @@ export function mountOceanBg(hostEl) {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const scale = 0.6; // render at 60% then upscale — invisible on water
 
-    const renderer = new THREE.WebGLRenderer({
-        antialias: false,
-        alpha: false,
-        powerPreference: 'high-performance',
-    });
+    let renderer;
+    try {
+        renderer = new THREE.WebGLRenderer({
+            antialias: false,
+            alpha: false,
+            powerPreference: 'high-performance',
+        });
+    } catch (e) {
+        // No WebGL context (old GPU, software rendering, power saver) —
+        // leave the section's CSS gradient fallback in place.
+        return () => {};
+    }
     renderer.setPixelRatio(dpr * scale);
     renderer.setClearColor(0x0a1a26, 1);
 
@@ -293,7 +300,15 @@ export function mountOceanBg(hostEl) {
 /* Auto-mount: any element with [data-ocean-bg]. */
 if (typeof document !== 'undefined') {
     const boot = () => {
-        document.querySelectorAll('[data-ocean-bg]').forEach(mountOceanBg);
+        document.querySelectorAll('[data-ocean-bg]').forEach((el) => {
+            // A failed mount must never break the rest of the bundle —
+            // boot() can run synchronously during module evaluation.
+            try {
+                mountOceanBg(el);
+            } catch (e) {
+                /* CSS gradient fallback stays */
+            }
+        });
     };
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', boot);
