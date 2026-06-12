@@ -62,11 +62,11 @@
             </h2>
             <div class="mt-10 inline-flex rounded-full border border-ink/10 bg-sand-50 p-1.5">
                 <button @click="$store.product.tab = 'casas'"
-                    class="eyebrow whitespace-nowrap rounded-full px-5 py-3 text-[0.65rem] transition-all duration-300 sm:px-7"
+                    class="eyebrow whitespace-nowrap rounded-full px-3.5 py-2.5 text-[0.625rem]! tracking-[0.16em]! transition-all duration-300 sm:px-7 sm:py-3 sm:text-xs! sm:tracking-[0.22em]!"
                     :class="$store.product.tab === 'casas' ? 'bg-ink text-sand-50' : 'text-ink-soft hover:text-ink'"
                 >Casas Candé</button>
                 <button @click="$store.product.tab = 'depas'"
-                    class="eyebrow whitespace-nowrap rounded-full px-5 py-3 text-[0.65rem] transition-all duration-300 sm:px-7"
+                    class="eyebrow whitespace-nowrap rounded-full px-3.5 py-2.5 text-[0.625rem]! tracking-[0.16em]! transition-all duration-300 sm:px-7 sm:py-3 sm:text-xs! sm:tracking-[0.22em]!"
                     :class="$store.product.tab === 'depas' ? 'bg-ink text-sand-50' : 'text-ink-soft hover:text-ink'"
                 ><span class="lang-es">Departamentos</span><span class="lang-en">Apartments</span></button>
             </div>

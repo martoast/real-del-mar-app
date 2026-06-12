@@ -40,11 +40,11 @@
         <div class="reveal mt-8 flex justify-center">
             <div class="inline-flex rounded-full border border-sand-50/15 bg-ocean-900/60 p-1.5">
                 <button @click="$store.product.tab = 'casas'; active = null"
-                    class="eyebrow whitespace-nowrap rounded-full px-4 py-2.5 text-[0.6rem] transition-all duration-300 sm:px-6"
+                    class="eyebrow whitespace-nowrap rounded-full px-3.5 py-2.5 text-[0.625rem]! tracking-[0.16em]! transition-all duration-300 sm:px-6 sm:py-2.5 sm:text-xs! sm:tracking-[0.22em]!"
                     :class="$store.product.tab === 'casas' ? 'bg-sand-50 text-ink' : 'text-sand-200/70 hover:text-sand-50'"
                 >Casas Candé</button>
                 <button @click="$store.product.tab = 'depas'; active = null"
-                    class="eyebrow whitespace-nowrap rounded-full px-4 py-2.5 text-[0.6rem] transition-all duration-300 sm:px-6"
+                    class="eyebrow whitespace-nowrap rounded-full px-3.5 py-2.5 text-[0.625rem]! tracking-[0.16em]! transition-all duration-300 sm:px-6 sm:py-2.5 sm:text-xs! sm:tracking-[0.22em]!"
                     :class="$store.product.tab === 'depas' ? 'bg-sand-50 text-ink' : 'text-sand-200/70 hover:text-sand-50'"
                 ><span class="lang-es">Departamentos</span><span class="lang-en">Apartments</span></button>
             </div>
