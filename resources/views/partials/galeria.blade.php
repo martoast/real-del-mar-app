@@ -1,23 +1,35 @@
 {{-- ============================== GALERÍA (dual-row marquee + slideshow lightbox) ============================== --}}
 @php
-    // Row 1 — interiores (casas + departamentos). Row 2 — exteriores & comunidad.
+    // Row 1 — Casas Candé. Row 2 — Departamentos.
     $rowCasas = [
-        ['img' => 'rdm-casa-sala.jpg', 'alt' => 'Sala de casa Candé'],
-        ['img' => 'rdm-casa-comedor.jpg', 'alt' => 'Comedor con vista al mar'],
-        ['img' => 'rdm-depto-a-sala.jpg', 'alt' => 'Sala y comedor del Departamento A'],
-        ['img' => 'rdm-casa-recamara.jpg', 'alt' => 'Recámara principal'],
-        ['img' => 'rdm-depto-b-sala.jpg', 'alt' => 'Sala y comedor del Departamento B'],
-        ['img' => 'rdm-casa-barra.jpg', 'alt' => 'Barra y bar de casa Candé'],
-        ['img' => 'rdm-depto-a-terraza.jpg', 'alt' => 'Terraza frente al Pacífico'],
+        ['img' => 'cande-casa-terraza-alberca.jpg', 'alt' => 'Terraza con alberca frente al mar'],
+        ['img' => 'cande-casa-doble-altura.jpg', 'alt' => 'Sala de doble altura con vista al mar'],
+        ['img' => 'cande-casa-cocina-comedor.jpg', 'alt' => 'Cocina y comedor de casa Candé'],
+        ['img' => 'cande-casa-sala-chimenea.jpg', 'alt' => 'Sala con chimenea'],
+        ['img' => 'cande-casa-cocina-isla.jpg', 'alt' => 'Cocina con isla'],
+        ['img' => 'cande-casa-recamara.jpg', 'alt' => 'Recámara principal'],
+        ['img' => 'cande-casa-bar.jpg', 'alt' => 'Bar de casa Candé'],
+        ['img' => 'cande-casa-sala-comedor.jpg', 'alt' => 'Sala y comedor abiertos al patio'],
+        ['img' => 'cande-casa-rooftop.jpg', 'alt' => 'Rooftop con vista al Pacífico'],
+        ['img' => 'cande-casa-estancia.jpg', 'alt' => 'Estancia familiar'],
+        ['img' => 'cande-casa-cocina.jpg', 'alt' => 'Cocina de casa Candé'],
+        ['img' => 'cande-casa-sala-tv.jpg', 'alt' => 'Sala de televisión'],
+        ['img' => 'cande-casa-bano.jpg', 'alt' => 'Baño principal'],
+        ['img' => 'cande-casa-vestibulo.jpg', 'alt' => 'Vestíbulo y escalera'],
     ];
     $rowComunidad = [
-        ['img' => 'rdm-casa-fachada.jpg', 'alt' => 'Fachada de casa Candé al atardecer'],
-        ['img' => 'rdm-casa-esquina.jpg', 'alt' => 'Casas Candé en esquina'],
-        ['img' => 'rdm-casas-aerea.jpg', 'alt' => 'Vista aérea de las casas'],
-        ['img' => 'rdm-edificios-golf.jpg', 'alt' => 'Torres sobre el campo de golf'],
-        ['img' => 'rdm-torres-sunset.jpg', 'alt' => 'Torres al atardecer'],
-        ['img' => 'rdm-caseta.jpg', 'alt' => 'Acceso y caseta de seguridad'],
-        ['img' => 'rdm-masterplan.jpg', 'alt' => 'Vista aérea de Real del Mar'],
+        ['img' => 'cande-depa-sala-esquina.jpg', 'alt' => 'Sala con ventanal en esquina y vista al mar'],
+        ['img' => 'cande-depa-sala-vista.jpg', 'alt' => 'Sala con chimenea y vista panorámica'],
+        ['img' => 'cande-depa-recamara-vista.jpg', 'alt' => 'Recámara con vista al mar'],
+        ['img' => 'cande-depa-comedor.jpg', 'alt' => 'Comedor con vista al mar'],
+        ['img' => 'cande-depa-exterior.jpg', 'alt' => 'Exterior de los departamentos'],
+        ['img' => 'cande-depa-cocina-sala.jpg', 'alt' => 'Cocina abierta a la sala'],
+        ['img' => 'cande-depa-terraza.jpg', 'alt' => 'Terraza del departamento'],
+        ['img' => 'cande-depa-sala.jpg', 'alt' => 'Sala del departamento'],
+        ['img' => 'cande-depa-cocina-barra.jpg', 'alt' => 'Cocina con barra'],
+        ['img' => 'cande-depa-cocina.jpg', 'alt' => 'Cocina del departamento'],
+        ['img' => 'cande-depa-recamara.jpg', 'alt' => 'Recámara con escritorio'],
+        ['img' => 'cande-depa-recamara-b.jpg', 'alt' => 'Recámara secundaria'],
     ];
 
     // Flat, ordered list shared by the lightbox slideshow. Each gallery
@@ -53,8 +65,14 @@
             </h2>
             <p class="mt-6 text-lg leading-relaxed text-sand-100/70">
                 <x-t>
-                    <x-slot:es>Recorre las residencias y la comunidad. Pasa el cursor para detener, o haz clic en cualquier imagen para abrir la galería completa.</x-slot:es>
-                    <x-slot:en>Explore the residences and community. Hover to pause, or click any image to open the full slideshow.</x-slot:en>
+                    <x-slot:es>Real del Mar es un desarrollo integral frente al Pacífico que ofrece un estilo de vida exclusivo en un entorno natural privilegiado. Combina arquitectura contemporánea, planeación urbana de calidad y una comunidad completa con residencias de alto nivel, áreas verdes y servicios educativos, deportivos y de hospitalidad.</x-slot:es>
+                    <x-slot:en>Real del Mar is an integrated development facing the Pacific that offers an exclusive lifestyle in a privileged natural setting. It blends contemporary architecture, thoughtful urban planning, and a complete community with high-end residences, green spaces, and educational, sports, and hospitality services.</x-slot:en>
+                </x-t>
+            </p>
+            <p class="mt-5 text-lg leading-relaxed text-sand-100/70">
+                <x-t>
+                    <x-slot:es>Diseñado para armonizar con el paisaje, brinda seguridad, conectividad y alto valor — tanto para vivir como para invertir.</x-slot:es>
+                    <x-slot:en>Designed to harmonize with the landscape, it offers security, connectivity, and lasting value — to live in and to invest in.</x-slot:en>
                 </x-t>
             </p>
         </div>

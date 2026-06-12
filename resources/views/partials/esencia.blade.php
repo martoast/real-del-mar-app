@@ -13,14 +13,14 @@
                 </h2>
                 <p class="mt-8 max-w-xl text-lg leading-relaxed text-ink-soft">
                     <x-t>
-                        <x-slot:es>Real del Mar es un desarrollo integral frente al Pacífico que ofrece un estilo de vida exclusivo en un entorno natural privilegiado. Combina arquitectura contemporánea, planeación urbana de calidad y una comunidad completa con residencias de alto nivel, áreas verdes y servicios educativos, deportivos y de hospitalidad.</x-slot:es>
-                        <x-slot:en>Real del Mar is an integrated development facing the Pacific that offers an exclusive lifestyle in a privileged natural setting. It blends contemporary architecture, thoughtful urban planning, and a complete community with high-end residences, green spaces, and educational, sports, and hospitality services.</x-slot:en>
+                        <x-slot:es>Candé by FRISA es una nueva etapa residencial de lujo dentro de Real del Mar, en Tijuana. Es un desarrollo que combina 37 casas y 54 departamentos diseñados para vivir o invertir en una zona privada, con vistas al mar y acceso a un estilo de vida tipo resort.</x-slot:es>
+                        <x-slot:en>Candé by FRISA is a new luxury residential phase within Real del Mar, in Tijuana. The development combines 37 homes and 54 apartments designed for living or investing in a private enclave with ocean views and access to a resort-style way of life.</x-slot:en>
                     </x-t>
                 </p>
                 <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
                     <x-t>
-                        <x-slot:es>Diseñado para armonizar con el paisaje, brinda seguridad, conectividad y alto valor — tanto para vivir como para invertir.</x-slot:es>
-                        <x-slot:en>Designed to harmonize with the landscape, it offers security, connectivity, and lasting value — to live in and to invest in.</x-slot:en>
+                        <x-slot:es>El proyecto cuenta con residencias modernas, amenidades y una ubicación privilegiada dentro de Real del Mar, donde los residentes pueden disfrutar de espacios como campo de golf, áreas deportivas, restaurantes, casa club y seguridad.</x-slot:es>
+                        <x-slot:en>The project features modern residences, amenities, and a privileged location within Real del Mar, where residents enjoy a golf course, sports areas, restaurants, a clubhouse, and round-the-clock security.</x-slot:en>
                     </x-t>
                 </p>
             </div>

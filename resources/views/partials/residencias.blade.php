@@ -1,12 +1,12 @@
 {{-- ============================== RESIDENCIAS ============================== --}}
 @php
-    $casasGallery = ['rdm-casa-fachada.jpg', 'rdm-casa-patio.jpg', 'rdm-casa-sala.jpg', 'rdm-casa-comedor.jpg', 'rdm-casa-recamara.jpg', 'rdm-casa-barra.jpg', 'rdm-casa-esquina.jpg', 'rdm-casas-aerea.jpg'];
-    $depasGallery = ['rdm-torres-sunset.jpg', 'rdm-edificios-golf.jpg', 'rdm-torres-dia.jpg', 'rdm-depto-a-sala.jpg', 'rdm-depto-a-terraza.jpg', 'rdm-depto-a-recamara.jpg', 'rdm-depto-b-sala.jpg', 'rdm-depto-a-01.jpg'];
+    $casasGallery = ['cande-casa-terraza-alberca.jpg', 'cande-casa-doble-altura.jpg', 'cande-casa-sala-chimenea.jpg', 'cande-casa-cocina-comedor.jpg', 'cande-casa-cocina-isla.jpg', 'cande-casa-sala-comedor.jpg', 'cande-casa-bar.jpg', 'cande-casa-cocina.jpg', 'cande-casa-estancia.jpg', 'cande-casa-sala-tv.jpg', 'cande-casa-recamara.jpg', 'cande-casa-rooftop.jpg', 'cande-casa-bano.jpg', 'cande-casa-vestibulo.jpg'];
+    $depasGallery = ['cande-depa-sala-esquina.jpg', 'cande-depa-sala-vista.jpg', 'cande-depa-recamara-vista.jpg', 'cande-depa-comedor.jpg', 'cande-depa-cocina-sala.jpg', 'cande-depa-terraza.jpg', 'cande-depa-exterior.jpg', 'cande-depa-sala.jpg', 'cande-depa-cocina-barra.jpg', 'cande-depa-cocina.jpg', 'cande-depa-recamara.jpg', 'cande-depa-recamara-b.jpg'];
 
     $casas = [
         [
             'nombre_es' => 'Tipología Ascendente', 'nombre_en' => 'Ascending Typology',
-            'm2' => '277 m²', 'img' => 'rdm-casa-sala.jpg',
+            'm2' => '277 m²', 'img' => 'cande-casa-doble-altura.jpg',
             'specs' => [
                 ['es' => '3 recámaras + Flex', 'en' => '3 bedrooms + Flex'],
                 ['es' => '3.5 baños', 'en' => '3.5 baths'],
@@ -16,7 +16,7 @@
         ],
         [
             'nombre_es' => 'Tipología Descendente', 'nombre_en' => 'Descending Typology',
-            'm2' => '275 m²', 'img' => 'rdm-casa-comedor.jpg',
+            'm2' => '275 m²', 'img' => 'cande-casa-sala-comedor.jpg',
             'specs' => [
                 ['es' => '3 recámaras + Flex', 'en' => '3 bedrooms + Flex'],
                 ['es' => '3.5 baños', 'en' => '3.5 baths'],
@@ -27,7 +27,7 @@
     ];
     $depas = [
         [
-            'nombre' => 'Modelo A', 'm2' => '144 m²', 'img' => 'rdm-depto-a-sala.jpg',
+            'nombre' => 'Modelo A', 'm2' => '144 m²', 'img' => 'cande-depa-sala-vista.jpg',
             'specs' => [
                 ['es' => '2 recámaras + Flex', 'en' => '2 bedrooms + Flex'],
                 ['es' => '3 baños', 'en' => '3 baths'],
@@ -37,7 +37,7 @@
             ],
         ],
         [
-            'nombre' => 'Modelo B', 'm2' => '102 m²', 'img' => 'rdm-depto-b-sala.jpg',
+            'nombre' => 'Modelo B', 'm2' => '102 m²', 'img' => 'cande-depa-recamara-vista.jpg',
             'specs' => [
                 ['es' => '1 recámara', 'en' => '1 bedroom'],
                 ['es' => '1.5 baños', 'en' => '1.5 baths'],
