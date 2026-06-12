@@ -116,6 +116,12 @@
 /* ------------------------------------------------------------------
    Base
 ------------------------------------------------------------------- */
+/* The overscroll canvas is painted with the html background — match the
+   dark hero/footer so rubber-banding never reveals a gray strip. */
+html {
+    background-color: var(--color-ocean-950);
+}
+
 body {
     @apply bg-sand-50 text-ink font-sans antialiased;
 }
