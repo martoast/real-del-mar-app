@@ -8,12 +8,15 @@ set -euo pipefail
 cd "$(dirname "$0")"                     # app/
 OUT="../dist"
 PORT=8099
+# Public URL of the deployed site — used for canonical/og:url/og:image,
+# which social scrapers require to be absolute. Override: SITE_URL=... ./build-static.sh
+SITE_URL="${SITE_URL:-https://sparkly-faloodeh-d8eb59.netlify.app}"
 
 echo "▸ Building front-end assets…"
 npm run build >/dev/null
 
 echo "▸ Rendering the homepage…"
-php artisan serve --port="$PORT" >/tmp/rdm-build-serve.log 2>&1 &
+APP_URL="$SITE_URL" php artisan serve --port="$PORT" >/tmp/rdm-build-serve.log 2>&1 &
 SERVER_PID=$!
 trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
 # wait for the server to answer

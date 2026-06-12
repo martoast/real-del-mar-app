@@ -23,13 +23,28 @@
         setTimeout(function () { document.documentElement.classList.remove('is-loading'); }, 14000);
     </script>
 
-    <title>{{ $title ?? 'Real del Mar — Vive frente al Pacífico · Rosarito, Baja California' }}</title>
-    <meta name="description" content="{{ $description ?? 'Real del Mar es un desarrollo integral frente al Pacífico en la zona costa de Baja California. Casas y departamentos de alto nivel con vistas al mar y al campo de golf.' }}">
+    @php $siteUrl = rtrim(config('app.url'), '/'); @endphp
+    <title>{{ $title ?? 'Candé by FRISA · Real del Mar — Casas y departamentos frente al Pacífico' }}</title>
+    <meta name="description" content="{{ $description ?? 'Candé by FRISA es una etapa residencial de lujo dentro de Real del Mar: 37 casas y 54 departamentos con vistas al mar, campo de golf y un estilo de vida tipo resort en Baja California.' }}">
+    <link rel="canonical" href="{{ $siteUrl }}/">
 
-    <meta property="og:title" content="Real del Mar — Vive frente al Pacífico">
-    <meta property="og:description" content="Desarrollo integral frente al Pacífico en Rosarito, Baja California. Respaldado por Grupo FRISA, diseñado por Cuaik.">
-    <meta property="og:image" content="{{ asset('images/rdm-edificios-golf.jpg') }}">
+    {{-- Open Graph (WhatsApp, Facebook, iMessage, LinkedIn) — URLs must be absolute --}}
+    <meta property="og:site_name" content="Candé · Real del Mar">
+    <meta property="og:title" content="Candé by FRISA · Real del Mar — Vive frente al Pacífico">
+    <meta property="og:description" content="Casas y departamentos de lujo con vistas al mar, campo de golf y estilo de vida tipo resort en Real del Mar, Baja California.">
+    <meta property="og:image" content="{{ $siteUrl }}/images/og-cande.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:url" content="{{ $siteUrl }}/">
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_MX">
+
+    {{-- Twitter / X card --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Candé by FRISA · Real del Mar — Vive frente al Pacífico">
+    <meta name="twitter:description" content="Casas y departamentos de lujo con vistas al mar, campo de golf y estilo de vida tipo resort en Real del Mar, Baja California.">
+    <meta name="twitter:image" content="{{ $siteUrl }}/images/og-cande.jpg">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
