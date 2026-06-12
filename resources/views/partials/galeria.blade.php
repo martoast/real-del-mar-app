@@ -1,35 +1,23 @@
 {{-- ============================== GALERÍA (dual-row marquee + slideshow lightbox) ============================== --}}
 @php
-    // Row 1 — Casas Candé. Row 2 — Departamentos.
+    // Row 1 — interiores (casas + departamentos). Row 2 — exteriores & comunidad.
     $rowCasas = [
-        ['img' => 'cande-casa-terraza-alberca.jpg', 'alt' => 'Terraza con alberca frente al mar'],
-        ['img' => 'cande-casa-doble-altura.jpg', 'alt' => 'Sala de doble altura con vista al mar'],
-        ['img' => 'cande-casa-cocina-comedor.jpg', 'alt' => 'Cocina y comedor de casa Candé'],
-        ['img' => 'cande-casa-sala-chimenea.jpg', 'alt' => 'Sala con chimenea'],
-        ['img' => 'cande-casa-cocina-isla.jpg', 'alt' => 'Cocina con isla'],
-        ['img' => 'cande-casa-recamara.jpg', 'alt' => 'Recámara principal'],
-        ['img' => 'cande-casa-bar.jpg', 'alt' => 'Bar de casa Candé'],
-        ['img' => 'cande-casa-sala-comedor.jpg', 'alt' => 'Sala y comedor abiertos al patio'],
-        ['img' => 'cande-casa-rooftop.jpg', 'alt' => 'Rooftop con vista al Pacífico'],
-        ['img' => 'cande-casa-estancia.jpg', 'alt' => 'Estancia familiar'],
-        ['img' => 'cande-casa-cocina.jpg', 'alt' => 'Cocina de casa Candé'],
-        ['img' => 'cande-casa-sala-tv.jpg', 'alt' => 'Sala de televisión'],
-        ['img' => 'cande-casa-bano.jpg', 'alt' => 'Baño principal'],
-        ['img' => 'cande-casa-vestibulo.jpg', 'alt' => 'Vestíbulo y escalera'],
+        ['img' => 'rdm-casa-sala.jpg', 'alt' => 'Sala de casa Candé'],
+        ['img' => 'rdm-casa-comedor.jpg', 'alt' => 'Comedor con vista al mar'],
+        ['img' => 'rdm-depto-a-sala.jpg', 'alt' => 'Sala y comedor del Departamento A'],
+        ['img' => 'rdm-casa-recamara.jpg', 'alt' => 'Recámara principal'],
+        ['img' => 'rdm-depto-b-sala.jpg', 'alt' => 'Sala y comedor del Departamento B'],
+        ['img' => 'rdm-casa-barra.jpg', 'alt' => 'Barra y bar de casa Candé'],
+        ['img' => 'rdm-depto-a-terraza.jpg', 'alt' => 'Terraza frente al Pacífico'],
     ];
     $rowComunidad = [
-        ['img' => 'cande-depa-sala-esquina.jpg', 'alt' => 'Sala con ventanal en esquina y vista al mar'],
-        ['img' => 'cande-depa-sala-vista.jpg', 'alt' => 'Sala con chimenea y vista panorámica'],
-        ['img' => 'cande-depa-recamara-vista.jpg', 'alt' => 'Recámara con vista al mar'],
-        ['img' => 'cande-depa-comedor.jpg', 'alt' => 'Comedor con vista al mar'],
-        ['img' => 'cande-depa-exterior.jpg', 'alt' => 'Exterior de los departamentos'],
-        ['img' => 'cande-depa-cocina-sala.jpg', 'alt' => 'Cocina abierta a la sala'],
-        ['img' => 'cande-depa-terraza.jpg', 'alt' => 'Terraza del departamento'],
-        ['img' => 'cande-depa-sala.jpg', 'alt' => 'Sala del departamento'],
-        ['img' => 'cande-depa-cocina-barra.jpg', 'alt' => 'Cocina con barra'],
-        ['img' => 'cande-depa-cocina.jpg', 'alt' => 'Cocina del departamento'],
-        ['img' => 'cande-depa-recamara.jpg', 'alt' => 'Recámara con escritorio'],
-        ['img' => 'cande-depa-recamara-b.jpg', 'alt' => 'Recámara secundaria'],
+        ['img' => 'rdm-casa-fachada.jpg', 'alt' => 'Fachada de casa Candé al atardecer'],
+        ['img' => 'rdm-casa-esquina.jpg', 'alt' => 'Casas Candé en esquina'],
+        ['img' => 'rdm-casas-aerea.jpg', 'alt' => 'Vista aérea de las casas'],
+        ['img' => 'rdm-edificios-golf.jpg', 'alt' => 'Torres sobre el campo de golf'],
+        ['img' => 'rdm-torres-sunset.jpg', 'alt' => 'Torres al atardecer'],
+        ['img' => 'rdm-caseta.jpg', 'alt' => 'Acceso y caseta de seguridad'],
+        ['img' => 'rdm-masterplan.jpg', 'alt' => 'Vista aérea de Real del Mar'],
     ];
 
     // Flat, ordered list shared by the lightbox slideshow. Each gallery
