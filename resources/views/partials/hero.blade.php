@@ -2,17 +2,13 @@
 <section class="grain relative flex min-h-svh items-end overflow-hidden bg-ocean-950">
     {{-- Backdrop --}}
     <div class="absolute inset-0">
-        <video
+        <img
+            src="{{ asset('images/hero-cande.jpg') }}"
+            alt="Casa Candé en Real del Mar"
             class="h-full w-full object-cover"
-            autoplay
-            loop
-            muted
-            playsinline
-            poster="{{ asset('images/hero-poster.jpg') }}"
+            fetchpriority="high"
         >
-            <source src="{{ asset('videos/hero.mp4') }}" type="video/mp4">
-        </video>
-        {{-- Subtle readability gradient — keep the video the star --}}
+        {{-- Subtle readability gradient — keep the image the star --}}
         <div class="absolute inset-0 bg-gradient-to-t from-ocean-950/70 via-transparent to-ocean-950/20"></div>
     </div>
 
