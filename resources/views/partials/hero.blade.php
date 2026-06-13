@@ -5,7 +5,7 @@
         <img
             src="{{ asset('images/hero-cande.jpg') }}"
             alt="Casa Candé en Real del Mar"
-            class="h-full w-full object-cover"
+            class="h-full w-full object-cover object-bottom"
             fetchpriority="high"
         >
         {{-- Subtle readability gradient — keep the image the star --}}
