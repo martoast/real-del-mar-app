@@ -18,14 +18,14 @@
                     </x-t>
                 </p>
                 <div class="mt-10 space-y-4 text-sm text-ink-soft">
-                    <a href="https://wa.me/526610000000" target="_blank" rel="noopener" class="flex items-center gap-3 transition-colors hover:text-terra-500">
+                    <a href="https://wa.me/526641158106" target="_blank" rel="noopener" class="flex items-center gap-3 transition-colors hover:text-terra-500">
                         <span class="flex h-9 w-9 items-center justify-center rounded-full bg-sand-200 text-ink">✆</span>
-                        WhatsApp · +52 661 000 0000
+                        WhatsApp · +52 664 115 8106
                     </a>
-                    <p class="flex items-center gap-3">
+                    <a href="mailto:ventas@cityinmobiliaria.mx" class="flex items-center gap-3 transition-colors hover:text-terra-500">
                         <span class="flex h-9 w-9 items-center justify-center rounded-full bg-sand-200 text-ink">✉</span>
-                        ventas@realdelmar.mx
-                    </p>
+                        ventas@cityinmobiliaria.mx
+                    </a>
                 </div>
             </div>
 

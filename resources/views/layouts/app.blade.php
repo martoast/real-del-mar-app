@@ -191,7 +191,8 @@
                     <p class="eyebrow mb-5 text-[0.6rem] text-ocean-300"><x-t><x-slot:es>Contacto</x-slot:es><x-slot:en>Contact</x-slot:en></x-t></p>
                     <ul class="space-y-3 text-sm">
                         <li><a href="#contacto" class="transition-colors hover:text-terra-300"><x-t><x-slot:es>Agendar visita</x-slot:es><x-slot:en>Schedule a visit</x-slot:en></x-t></a></li>
-                        <li><a href="https://wa.me/526610000000" target="_blank" rel="noopener" class="transition-colors hover:text-terra-300">WhatsApp</a></li>
+                        <li><a href="https://wa.me/526641158106" target="_blank" rel="noopener" class="transition-colors hover:text-terra-300">WhatsApp · +52 664 115 8106</a></li>
+                        <li><a href="mailto:ventas@cityinmobiliaria.mx" class="transition-colors hover:text-terra-300">ventas@cityinmobiliaria.mx</a></li>
                         <li><a href="https://www.cande.mx/" target="_blank" rel="noopener" class="transition-colors hover:text-terra-300">cande.mx</a></li>
                     </ul>
                 </div>
@@ -216,9 +217,9 @@
     {{-- Floating WhatsApp (message switches with language) --}}
     <a
         :href="$store.lang.current === 'en'
-            ? 'https://wa.me/526610000000?text=Hi%2C%20I%27m%20interested%20in%20Real%20del%20Mar.%20Could%20you%20send%20me%20more%20information%3F'
-            : 'https://wa.me/526610000000?text=Hola%2C%20me%20interesa%20Real%20del%20Mar%2C%20%C2%BFme%20pueden%20enviar%20informaci%C3%B3n%3F'"
-        href="https://wa.me/526610000000?text=Hola%2C%20me%20interesa%20Real%20del%20Mar%2C%20%C2%BFme%20pueden%20enviar%20informaci%C3%B3n%3F"
+            ? 'https://wa.me/526641158106?text=Hi%2C%20I%27m%20interested%20in%20Real%20del%20Mar.%20Could%20you%20send%20me%20more%20information%3F'
+            : 'https://wa.me/526641158106?text=Hola%2C%20me%20interesa%20Real%20del%20Mar%2C%20%C2%BFme%20pueden%20enviar%20informaci%C3%B3n%3F'"
+        href="https://wa.me/526641158106?text=Hola%2C%20me%20interesa%20Real%20del%20Mar%2C%20%C2%BFme%20pueden%20enviar%20informaci%C3%B3n%3F"
         target="_blank" rel="noopener"
         aria-label="WhatsApp"
         class="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-lg shadow-ink/20 transition-transform duration-300 hover:scale-110"
