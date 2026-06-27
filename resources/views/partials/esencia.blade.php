@@ -25,19 +25,35 @@
                 </p>
             </div>
 
-            {{-- Casas Candé video --}}
-            <div class="reveal relative lg:col-span-5">
-                <div class="overflow-hidden rounded-2xl bg-ocean-950 shadow-xl shadow-ink/10">
+            {{-- Casas Candé video (click to play) --}}
+            <div class="reveal relative lg:col-span-5" x-data="{ playing: false }">
+                <div class="group relative overflow-hidden rounded-2xl bg-ocean-950 shadow-xl shadow-ink/10">
                     <video
+                        x-ref="video"
                         class="aspect-[4/5] w-full object-cover"
-                        autoplay
-                        loop
-                        muted
                         playsinline
+                        controls
                         poster="{{ asset('images/casa-cande-poster.jpg') }}"
+                        @play="playing = true"
+                        @pause="playing = false"
+                        @ended="playing = false"
                     >
                         <source src="{{ asset('videos/casa-cande.mp4') }}" type="video/mp4">
                     </video>
+
+                    {{-- Play overlay --}}
+                    <button
+                        type="button"
+                        x-show="!playing"
+                        x-cloak
+                        @click="$refs.video.play()"
+                        class="absolute inset-0 flex items-center justify-center bg-ocean-950/25 transition-colors hover:bg-ocean-950/15"
+                        aria-label="Reproducir video"
+                    >
+                        <span class="flex h-20 w-20 items-center justify-center rounded-full bg-sand-50/90 text-ink shadow-lg backdrop-blur transition-transform group-hover:scale-105">
+                            <svg class="ml-1 h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        </span>
+                    </button>
                 </div>
             </div>
         </div>
