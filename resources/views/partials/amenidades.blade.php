@@ -3,7 +3,7 @@
     $amenidades = [
         ['img' => 'rdm-am-golf.webp',        't_es' => 'Campo de golf',      't_en' => 'Golf course',     'd_es' => '18 hoyos con vistas espectaculares al mar.',           'd_en' => '18 holes with stunning sea views.'],
         ['img' => 'rdm-am-hipico.webp',      't_es' => 'Club hípico',        't_en' => 'Equestrian club',  'd_es' => 'Para los amantes del mundo ecuestre.',                'd_en' => 'For lovers of the equestrian world.'],
-        ['img' => 'rdm-am-club.webp',        't_es' => 'Casa Club',          't_en' => 'Clubhouse',        'd_es' => 'Espacios sociales elegantes para convivir y relajarse.', 'd_en' => 'Elegant social spaces to gather and relax.'],
+        ['img' => 'rdm-am-club.jpg',         't_es' => 'Casa Club',          't_en' => 'Clubhouse',        'd_es' => 'Espacios sociales elegantes para convivir y relajarse.', 'd_en' => 'Elegant social spaces to gather and relax.'],
         ['img' => 'rdm-am-hotel.jpg',        't_es' => 'Hotel',             't_en' => 'Hotel',            'd_es' => 'Hospedaje y descanso de resort, con todos los servicios a tu alcance.', 'd_en' => 'Resort lodging and relaxation, with every service within reach.'],
         ['img' => 'rdm-am-padel.webp',       't_es' => 'Canchas deportivas', 't_en' => 'Sports courts',    'd_es' => 'Disfruta las canchas de pádel y tenis en un entorno privado.', 'd_en' => 'Enjoy the padel and tennis courts in a private setting.'],
         ['img' => 'rdm-am-parque.webp',      't_es' => 'Parque ecológico',   't_en' => 'Ecological park',  'd_es' => 'Áreas verdes para reconectar con la naturaleza.',      'd_en' => 'Green areas to connect with nature.'],
