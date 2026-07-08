@@ -8,7 +8,7 @@
 @section('content')
     @include('partials.hero')
     @include('partials.esencia')
-    @include('partials.cta-video')
+    @include('partials.video')
     @include('partials.residencias')
     @include('partials.aspiracional')
     @include('partials.disponibilidad')
