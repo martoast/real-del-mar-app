@@ -1,5 +1,5 @@
 {{-- ============================== HERO ============================== --}}
-<section class="grain relative flex min-h-svh items-end overflow-hidden bg-ocean-950">
+<section class="grain relative flex min-h-svh items-end justify-center overflow-hidden bg-ocean-950">
     {{-- Backdrop --}}
     <div class="absolute inset-0">
         <img
@@ -13,16 +13,15 @@
     </div>
 
     {{-- Copy — one quiet line, let the video do the talking --}}
-    <div class="relative mx-auto w-full max-w-7xl px-6 pb-28 text-center lg:px-10 lg:pb-16 lg:text-left">
-        <div class="reveal-group is-revealed mx-auto max-w-3xl lg:mx-0">
-            <p class="eyebrow text-terra-300 drop-shadow-[0_2px_24px_rgba(10,26,38,0.55)]"><x-t><x-slot:es>Exclusividad</x-slot:es><x-slot:en>Exclusivity</x-slot:en></x-t></p>
-            <h1 class="display mt-5 text-4xl font-light text-sand-50 drop-shadow-[0_2px_24px_rgba(10,26,38,0.55)] sm:text-5xl lg:text-6xl">
-                <x-t>
-                    <x-slot:es>Sólo 37 residencias y <em>54 departamentos</em></x-slot:es>
-                    <x-slot:en>Only 37 homes and <em>54 apartments</em></x-slot:en>
-                </x-t>
-            </h1>
-        </div>
+    {{-- Copy — bottom-centered, like the Riviera hero --}}
+    <div class="reveal-group is-revealed relative z-10 mx-auto w-full max-w-5xl px-6 pb-32 text-center sm:pb-20">
+        <p class="eyebrow text-terra-300 drop-shadow-[0_2px_24px_rgba(10,26,38,0.55)]"><x-t><x-slot:es>Exclusividad</x-slot:es><x-slot:en>Exclusivity</x-slot:en></x-t></p>
+        <h1 class="display mt-5 text-4xl font-light text-sand-50 drop-shadow-[0_2px_24px_rgba(10,26,38,0.55)] sm:text-5xl lg:text-6xl">
+            <x-t>
+                <x-slot:es>Sólo 37 residencias y <em>54 departamentos</em></x-slot:es>
+                <x-slot:en>Only 37 homes and <em>54 apartments</em></x-slot:en>
+            </x-t>
+        </h1>
     </div>
 
     {{-- Scroll cue (arrow only) --}}
