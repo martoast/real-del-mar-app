@@ -34,7 +34,7 @@ perl -pi -e "s{http:(?:\\\\*/){2}127\\.0\\.0\\.1:$PORT}{}g; s{http:(?:\\\\*/){2}
 
 echo "▸ Copying static assets…"
 for d in site-assets images videos fonts; do cp -R "public/$d" "$OUT/$d"; done
-cp public/favicon.ico public/robots.txt "$OUT/" 2>/dev/null || true
+cp public/favicon.ico public/robots.txt public/gracias.html public/sitemap.xml "$OUT/" 2>/dev/null || true
 
 echo "▸ Writing cache headers (no netlify.toml/_redirects — keeps drag-drop clean)…"
 cat > "$OUT/_headers" <<'HD'

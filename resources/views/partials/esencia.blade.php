@@ -23,6 +23,21 @@
                         <x-slot:en>The project features modern residences, amenities, and a privileged location within Real del Mar, where residents enjoy a golf course, sports areas, restaurants, a clubhouse, and round-the-clock security.</x-slot:en>
                     </x-t>
                 </p>
+
+                {{-- Key numbers (blueprint: proyecto stat row) --}}
+                <dl class="mt-10 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-4">
+                    @foreach ([
+                        ['n' => '37', 'es' => 'Casas', 'en' => 'Homes'],
+                        ['n' => '54', 'es' => 'Departamentos', 'en' => 'Apartments'],
+                        ['n' => '3', 'es' => 'Torres', 'en' => 'Towers'],
+                        ['n' => '3', 'es' => 'Etapas', 'en' => 'Phases'],
+                    ] as $stat)
+                        <div>
+                            <dt class="display text-4xl font-light text-ink">{{ $stat['n'] }}</dt>
+                            <dd class="eyebrow mt-1 text-[0.55rem] text-ink-soft"><span class="lang-es">{{ $stat['es'] }}</span><span class="lang-en">{{ $stat['en'] }}</span></dd>
+                        </div>
+                    @endforeach
+                </dl>
             </div>
 
             {{-- Casas Candé video (click to play) --}}

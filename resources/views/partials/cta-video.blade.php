@@ -25,6 +25,10 @@
                     <x-slot:en>Where architecture<br><em>embraces the sea</em></x-slot:en>
                 </x-t>
             </h2>
+            <a href="#residencias"
+               class="eyebrow mt-9 inline-flex items-center justify-center rounded-full bg-terra-500 px-8 py-4 text-[0.7rem] text-sand-50 transition-colors hover:bg-terra-600">
+                <x-t><x-slot:es>Ver residencias</x-slot:es><x-slot:en>Explore residences</x-slot:en></x-t>
+            </a>
         </div>
     </div>
 </section>
