@@ -6,7 +6,7 @@
 # ------------------------------------------------------------------
 set -euo pipefail
 cd "$(dirname "$0")"                     # app/
-OUT="../dist"
+OUT="${OUT:-../dist}"
 PORT=8099
 # Public URL of the deployed site — used for canonical/og:url/og:image,
 # which social scrapers require to be absolute. Override: SITE_URL=... ./build-static.sh
@@ -29,7 +29,7 @@ curl -s "http://127.0.0.1:$PORT" -o "$OUT/index.html"
 kill "$SERVER_PID" 2>/dev/null || true
 
 echo "▸ Making asset URLs root-relative…"
-sed -i '' "s#http://127.0.0.1:$PORT/#/#g; s#http://localhost:$PORT/#/#g; s#http://localhost/#/#g" "$OUT/index.html"
+perl -pi -e "s#http://127\\.0\\.0\\.1:$PORT/#/#g; s#http://localhost:$PORT/#/#g; s#http://localhost/#/#g" "$OUT/index.html"
 perl -pi -e "s{http:(?:\\\\*/){2}127\\.0\\.0\\.1:$PORT}{}g; s{http:(?:\\\\*/){2}localhost(?::$PORT)?}{}g" "$OUT/index.html"
 
 echo "▸ Copying static assets…"
