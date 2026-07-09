@@ -25,7 +25,12 @@ for i in $(seq 1 20); do
 done
 
 rm -rf "$OUT"; mkdir -p "$OUT"
-curl -s "http://127.0.0.1:$PORT" -o "$OUT/index.html"
+HTTP_STATUS=$(curl -s -o "$OUT/index.html" -w "%{http_code}" "http://127.0.0.1:$PORT")
+if [ "$HTTP_STATUS" != "200" ]; then
+  echo "✗ Homepage rendered HTTP $HTTP_STATUS — aborting so we never publish an error page." >&2
+  head -c 2000 "$OUT/index.html" >&2 || true
+  exit 1
+fi
 kill "$SERVER_PID" 2>/dev/null || true
 
 echo "▸ Making asset URLs root-relative…"
