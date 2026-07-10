@@ -46,6 +46,11 @@
     <meta name="twitter:description" content="Casas y departamentos de lujo con vistas al mar, campo de golf y estilo de vida tipo resort en Real del Mar, Baja California.">
     <meta name="twitter:image" content="{{ $siteUrl }}/images/og-cande.jpg">
 
+    {{-- Display serif — Cormorant Garamond --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body

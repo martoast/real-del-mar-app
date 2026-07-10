@@ -77,9 +77,9 @@
    cancelería negra (matte black), and the Pacific itself.
 ------------------------------------------------------------------- */
 @theme {
-    --font-display: 'BoardWalk', ui-serif, Georgia, serif;
+    --font-display: 'Cormorant Garamond', ui-serif, Georgia, serif;
     --font-sans: 'Titling Gothic Normal', ui-sans-serif, system-ui, sans-serif;
-    --font-delight: 'Delight', ui-sans-serif, system-ui, sans-serif;
+    --font-delight: 'Cormorant Garamond', ui-serif, Georgia, serif;
 
     /* Sand / travertine — page backgrounds */
     --color-sand-50: #faf8f4;
@@ -180,19 +180,19 @@ body {
     letter-spacing: var(--tracking-eyebrow);
 }
 
-/* Display headline base — BoardWalk (matches cande.mx headings) */
+/* Display headline base — Cormorant Garamond (classic estate serif) */
 .display {
     @apply font-display;
-    line-height: 1.08;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
 }
 
-/* Accent words inside headlines — render in Delight for a refined contrast
-   against BoardWalk (BoardWalk has no true italic, so no fake-oblique). */
+/* Accent words inside headlines — Cormorant italic for an editorial lift. */
 .display em,
 .accent-italic {
-    font-family: var(--font-delight);
-    font-style: normal;
-    font-weight: 300;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
 }
 
 /* Scroll-reveal initial states (driven by reveal.js) */
