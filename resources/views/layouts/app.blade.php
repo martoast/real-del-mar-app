@@ -203,7 +203,7 @@
                         <x-slot:es>© {{ date('Y') }} Real del Mar. Todos los derechos reservados. · Aviso de Privacidad</x-slot:es>
                         <x-slot:en>© {{ date('Y') }} Real del Mar. All rights reserved. · Privacy Notice</x-slot:en>
                     </x-t>
-                    <span class="text-sand-200/30">· v1.0.1</span>
+                    <span class="text-sand-200/30">· v1.0.2</span>
                 </p>
                 <p class="mt-2">
                     <x-t>
