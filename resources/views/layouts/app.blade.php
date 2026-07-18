@@ -62,7 +62,12 @@
     {{-- ============================== PRELOADER ============================== --}}
     <div id="preloader" class="fixed inset-0 z-[100] flex items-center justify-center bg-ocean-950">
         <div class="preloader-mark flex flex-col items-center">
-            @include('partials.logo', ['class' => 'h-14 w-auto text-sand-50'])
+            {{-- Logos City + Candé (blancos), centrados y separados por una línea vertical --}}
+            <div class="flex items-center justify-center gap-5 sm:gap-6">
+                <img src="{{ asset('images/city-logo-blanco.png') }}" alt="City Inmobiliaria" class="h-9 w-auto sm:h-10">
+                <span class="h-11 w-px bg-sand-50/40 sm:h-12"></span>
+                <img src="{{ asset('images/cande-logo.png') }}" alt="Candé" class="h-8 w-auto sm:h-9">
+            </div>
             <div class="mt-10 h-px w-44 overflow-hidden rounded-full bg-sand-50/15">
                 <div id="preloader-bar" class="h-full w-0 rounded-full bg-terra-400 transition-[width] duration-300 ease-out"></div>
             </div>
@@ -92,7 +97,11 @@
                 :class="navSolid || navOpen ? 'text-ink' : 'text-sand-50'"
                 aria-label="Real del Mar — inicio"
             >
-                @include('partials.logo', ['class' => 'h-12 w-auto lg:h-14'])
+                {{-- Logo City — blanco sobre el hero; azul cuando la barra se vuelve sólida (fondo claro) --}}
+                <img src="{{ asset('images/city-logo-blanco.png') }}" alt="City Inmobiliaria"
+                    class="h-10 w-auto lg:h-12" x-show="!(navSolid || navOpen)">
+                <img src="{{ asset('images/city-logo-azul.png') }}" alt="City Inmobiliaria"
+                    class="h-10 w-auto lg:h-12" x-show="navSolid || navOpen" x-cloak>
             </a>
 
             {{-- Desktop links --}}
@@ -171,7 +180,7 @@
         <div class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
             <div class="grid gap-12 md:grid-cols-3">
                 <div class="text-sand-50">
-                    @include('partials.logo', ['class' => 'h-10 w-auto'])
+                    <img src="{{ asset('images/city-logo-blanco.png') }}" alt="City Inmobiliaria" class="h-10 w-auto">
                     <p class="mt-6 max-w-xs text-sm leading-relaxed text-sand-200/70">
                         <x-t>
                             <x-slot:es>Un desarrollo integral frente al Pacífico. Respaldado por Grupo FRISA, diseñado por Cuaik.</x-slot:es>

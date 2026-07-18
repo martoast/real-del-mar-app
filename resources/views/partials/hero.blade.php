@@ -15,6 +15,9 @@
     {{-- Copy — one quiet line, let the video do the talking --}}
     {{-- Copy — bottom-centered, like the Riviera hero --}}
     <div class="reveal-group is-revealed relative z-10 mx-auto w-full max-w-5xl px-6 pb-32 text-center sm:pb-20">
+        {{-- Logo de Candé, centrado sobre el eyebrow --}}
+        <img src="{{ asset('images/cande-logo.png') }}" alt="Candé at Real del Mar"
+            class="mx-auto mb-7 h-16 w-auto drop-shadow-[0_2px_24px_rgba(2,22,55,0.55)] sm:h-20">
         <p class="eyebrow text-terra-300 drop-shadow-[0_2px_24px_rgba(10,26,38,0.55)]"><x-t><x-slot:es>Exclusividad</x-slot:es><x-slot:en>Exclusivity</x-slot:en></x-t></p>
         <h1 class="display mt-5 text-4xl font-light text-sand-50 drop-shadow-[0_2px_24px_rgba(10,26,38,0.55)] sm:text-5xl lg:text-6xl">
             <x-t>
