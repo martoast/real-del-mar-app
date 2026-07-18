@@ -5,8 +5,8 @@
             <p class="eyebrow text-terra-500"><x-t><x-slot:es>Financiamiento</x-slot:es><x-slot:en>Financing</x-slot:en></x-t></p>
             <h2 class="display mt-6 text-4xl font-light text-ink sm:text-5xl">
                 <x-t>
-                    <x-slot:es>Opciones de crédito para <em>mexicanos y estadounidenses</em></x-slot:es>
-                    <x-slot:en>Credit options for <em>Mexicans and U.S. citizens</em></x-slot:en>
+                    <x-slot:es>Opciones de crédito para<br><em>mexicanos y estadounidenses</em></x-slot:es>
+                    <x-slot:en>Credit options for<br><em>Mexicans and U.S. citizens</em></x-slot:en>
                 </x-t>
             </h2>
         </div>

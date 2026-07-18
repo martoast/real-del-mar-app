@@ -70,10 +70,9 @@
                     <span x-show="!sending"><x-t><x-slot:es>Enviar</x-slot:es><x-slot:en>Send</x-slot:en></x-t></span>
                     <span x-show="sending" x-cloak><x-t><x-slot:es>Enviando…</x-slot:es><x-slot:en>Sending…</x-slot:en></x-t></span>
                 </button>
-                <a href="https://wa.me/526641158106" target="_blank" rel="noopener" onclick="if(window.fbq)fbq('track','Contact',{method:'whatsapp'})"
+                <a href="tel:+526641158106" onclick="if(window.fbq)fbq('track','Contact',{method:'call'})"
                     class="eyebrow flex flex-1 items-center justify-center gap-2 rounded-full border border-ink/20 px-8 py-4 text-[0.7rem] text-ink transition-colors hover:border-ink hover:bg-ink hover:text-sand-50">
-                    <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.9-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.1c.1.2.1.4 0 .6l-.4.6-.5.5c-.1.2-.3.3-.1.6.2.3.8 1.4 1.8 2.2 1.2 1.1 2.3 1.4 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.6.4 0 .1 0 .8-.2 1.4z"/></svg>
-                    WhatsApp
+                    ¡Llame ya!
                 </a>
             </div>
             <p x-show="error" x-cloak class="pt-1 text-center text-xs text-red-600">
