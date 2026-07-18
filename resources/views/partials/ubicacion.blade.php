@@ -13,8 +13,8 @@
                 <p class="eyebrow text-terra-300"><x-t><x-slot:es>Ubicación</x-slot:es><x-slot:en>Location</x-slot:en></x-t></p>
                 <h2 class="display mt-6 text-4xl font-light text-sand-50 sm:text-5xl lg:text-6xl">
                     <x-t>
-                        <x-slot:es>Real del Mar en la costa de<br><em>Baja California</em></x-slot:es>
-                        <x-slot:en>Real del Mar on the coast of<br><em>Baja California</em></x-slot:en>
+                        <x-slot:es>Real del Mar en la costa<br><em>de Baja California</em></x-slot:es>
+                        <x-slot:en>Real del Mar on the coast<br><em>of Baja California</em></x-slot:en>
                     </x-t>
                 </h2>
                 <p class="mt-8 text-lg leading-relaxed text-sand-100/80">
@@ -27,7 +27,7 @@
                 {{-- Drive times --}}
                 <div class="reveal-group mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-sand-50/15 bg-sand-50/10 backdrop-blur-sm sm:grid-cols-3">
                     @foreach ([
-                        ['t' => '8 min', 'es' => 'Frontera', 'en' => 'Border'],
+                        ['t' => '8 min', 'es' => 'Garita de San Ysidro', 'en' => 'San Ysidro Border'],
                         ['t' => '10 min', 'es' => 'Zona Río Tijuana', 'en' => 'Tijuana River Zone'],
                         ['t' => '13 min', 'es' => 'Aeropuerto', 'en' => 'Airport'],
                     ] as $destino)

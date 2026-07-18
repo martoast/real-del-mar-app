@@ -19,9 +19,17 @@
                     <x-slot:en>Living at Candé means the sea, the golf course, and the calm of Real del Mar are part of your everyday — a private, master-planned setting with strong appreciation, to live in or invest in.</x-slot:en>
                 </x-t>
             </p>
-            <a href="#contacto" class="eyebrow mt-9 inline-flex items-center justify-center rounded-full bg-terra-500 px-8 py-4 text-[0.7rem] text-sand-50 transition-colors hover:bg-terra-600">
-                <x-t><x-slot:es>Agendar visita</x-slot:es><x-slot:en>Schedule a visit</x-slot:en></x-t>
-            </a>
+            <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                {{-- CTA principal: Agendar una visita --}}
+                <a href="#contacto" class="eyebrow inline-flex items-center justify-center rounded-full bg-terra-300 px-8 py-4 text-[0.7rem] text-ocean-950 transition-colors hover:bg-sand-50">
+                    <x-t><x-slot:es>Agendar visita</x-slot:es><x-slot:en>Schedule a visit</x-slot:en></x-t>
+                </a>
+                {{-- CTA secundario: llamada telefónica directa --}}
+                <a href="tel:6641158106" onclick="if(window.fbq)fbq('track','Contact',{method:'call'})"
+                    class="eyebrow inline-flex items-center justify-center rounded-full border border-sand-50/40 px-8 py-4 text-[0.7rem] text-sand-50 transition-colors hover:border-sand-50 hover:bg-sand-50/10">
+                    ¡Llame ya!
+                </a>
+            </div>
         </div>
     </div>
 </section>

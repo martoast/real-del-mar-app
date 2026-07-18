@@ -93,10 +93,6 @@
                 aria-label="Real del Mar — inicio"
             >
                 @include('partials.logo', ['class' => 'h-12 w-auto lg:h-14'])
-                <span
-                    class="eyebrow hidden border-l pl-3 text-[0.6rem] sm:inline transition-colors duration-500"
-                    :class="navSolid || navOpen ? 'border-ink/15 text-ink-soft' : 'border-sand-50/25 text-sand-200'"
-                >Baja California</span>
             </a>
 
             {{-- Desktop links --}}
@@ -124,7 +120,8 @@
 
                 <a
                     href="#contacto"
-                    class="eyebrow rounded-full px-5 py-2.5 text-[0.65rem] text-sand-50 transition-all duration-300 bg-terra-500 hover:bg-terra-600"
+                    class="eyebrow rounded-full px-5 py-2.5 text-[0.65rem] transition-all duration-300"
+                    :class="navSolid ? 'bg-terra-500 text-sand-50 hover:bg-terra-600' : 'bg-terra-300 text-ocean-950 hover:bg-sand-50'"
                 ><span class="lang-es">Agendar visita</span><span class="lang-en">Schedule a visit</span></a>
             </div>
 

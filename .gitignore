@@ -29,3 +29,6 @@ Thumbs.db
 
 # Static export output (built by Netlify CI)
 /dist
+
+# Local Netlify CLI state
+.netlify/

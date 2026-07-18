@@ -20,7 +20,7 @@
                 </x-t>
             </p>
             <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row sm:items-center">
-                <a href="#contacto" class="eyebrow inline-flex items-center justify-center rounded-full bg-terra-500 px-8 py-4 text-[0.7rem] text-sand-50 transition-colors hover:bg-terra-600">
+                <a href="#contacto" class="eyebrow inline-flex items-center justify-center rounded-full bg-terra-300 px-8 py-4 text-[0.7rem] text-ocean-950 transition-colors hover:bg-sand-50">
                     <x-t><x-slot:es>Solicitar disponibilidad</x-slot:es><x-slot:en>Request availability</x-slot:en></x-t>
                 </a>
                 <a href="#contacto" class="eyebrow inline-flex items-center justify-center rounded-full border border-sand-50/40 px-8 py-4 text-[0.7rem] text-sand-50 transition-colors hover:bg-sand-50/10">

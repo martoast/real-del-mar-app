@@ -134,12 +134,12 @@ const FRAGMENT_SHADER = /* glsl */ `
         /* Sun path — warm light pooling toward the cursor. */
         float sun = u_mouse_intensity * exp(-mouseDist * 2.2) * 0.8;
 
-        /* Palette: Pacific at dusk. */
-        vec3 abyss = vec3(0.039, 0.102, 0.149);   // #0a1a26 ocean-950
-        vec3 deep  = vec3(0.059, 0.145, 0.200);   // #0f2533 ocean-900
-        vec3 swellBlue = vec3(0.200, 0.392, 0.490); // #33647d ocean-600
-        vec3 foam  = vec3(0.851, 0.788, 0.698);   // sand foam glint
-        vec3 sunGold = vec3(0.804, 0.510, 0.341); // terra sun path
+        /* Palette: City Inmobiliaria — Azul City navy con realce azul claro. */
+        vec3 abyss = vec3(0.008, 0.086, 0.216);   // #021637 Azul City (ocean-950)
+        vec3 deep  = vec3(0.020, 0.122, 0.259);   // #051f42 ocean-900
+        vec3 swellBlue = vec3(0.125, 0.310, 0.549); // #204f8c ocean-600
+        vec3 foam  = vec3(0.753, 0.882, 1.000);   // #C0E1FF foam glint
+        vec3 sunGold = vec3(0.918, 0.957, 1.000); // cool light pool (was terra)
 
         vec3 col = mix(abyss, deep, n);
         col = mix(col, swellBlue, pow(n, 2.0) * 0.55);
@@ -191,7 +191,7 @@ export function mountOceanBg(hostEl) {
         return () => {};
     }
     renderer.setPixelRatio(dpr * scale);
-    renderer.setClearColor(0x0a1a26, 1);
+    renderer.setClearColor(0x021637, 1);
 
     const canvas = renderer.domElement;
     canvas.style.position = 'absolute';

@@ -14,6 +14,8 @@
     @include('partials.disponibilidad')
     @include('partials.financiamiento')
     @include('partials.amenidades')
+    {{-- Segundo formulario de contacto (duplicado), inmediatamente antes de Ubicación --}}
+    @include('partials.contacto', ['sectionId' => 'contacto-top'])
     @include('partials.ubicacion')
     @include('partials.interiores')
     @include('partials.galeria')

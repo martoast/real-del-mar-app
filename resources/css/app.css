@@ -81,34 +81,38 @@
     --font-sans: 'Titling Gothic Normal', ui-sans-serif, system-ui, sans-serif;
     --font-delight: 'Cormorant Garamond', ui-serif, Georgia, serif;
 
-    /* Sand / travertine — page backgrounds */
-    --color-sand-50: #faf8f4;
-    --color-sand-100: #f4f0e7;
-    --color-sand-200: #e9e1d2;
-    --color-sand-300: #d9cbb2;
-    --color-sand-400: #c3ab85;
+    /* City Inmobiliaria — identidad: Azul City #021637 + Blanco #FFFFFF.
+       Acento claro #C0E1FF para contraste sobre el azul (mapas, CTAs, highlights). */
 
-    /* Pacific ocean — accents, dark bands, footer */
-    --color-ocean-300: #8fb3c2;
-    --color-ocean-400: #5e8fa3;
-    --color-ocean-600: #33647d;
-    --color-ocean-800: #1a3a4d;
-    --color-ocean-900: #0f2533;
-    --color-ocean-950: #0a1a26;
+    /* Page backgrounds — blanco → neutro frío claro (antes "sand") */
+    --color-sand-50: #ffffff;
+    --color-sand-100: #eef2f8;
+    --color-sand-200: #dde5f1;
+    --color-sand-300: #c2d1e4;
+    --color-sand-400: #94a9c6;
 
-    /* Teja / terracotta — the single warm accent (CTAs only) */
-    --color-terra-300: #ddab87;
-    --color-terra-400: #cd8257;
-    --color-terra-500: #b9663a;
-    --color-terra-600: #9d5230;
+    /* Azul City — bandas oscuras, footer, escala navy sobre #021637 (antes "ocean") */
+    --color-ocean-300: #93b0d8;
+    --color-ocean-400: #5a82b8;
+    --color-ocean-600: #204f8c;
+    --color-ocean-800: #0a2b57;
+    --color-ocean-900: #051f42;
+    --color-ocean-950: #021637;
 
-    /* Stone & oak — supporting neutrals */
-    --color-stone-warm: #a39a8b;
-    --color-oak: #9c7a52;
+    /* Acento — azul claro City para CTAs/realces sobre navy;
+       navy #021637 para botones sobre fondo claro (antes "terra") */
+    --color-terra-300: #c0e1ff;
+    --color-terra-400: #c0e1ff;
+    --color-terra-500: #021637;
+    --color-terra-600: #0a2b57;
 
-    /* Ink — warm charcoal text, never pure black */
-    --color-ink: #232019;
-    --color-ink-soft: #5c564a;
+    /* Neutros de apoyo — pizarra fría */
+    --color-stone-warm: #5c6b82;
+    --color-oak: #7d8ba0;
+
+    /* Ink — texto azul-carbón sobre blanco, nunca negro puro */
+    --color-ink: #14233b;
+    --color-ink-soft: #51617a;
 
     --tracking-eyebrow: 0.22em;
 }
@@ -131,7 +135,7 @@ body {
 }
 
 ::selection {
-    background-color: var(--color-terra-400);
+    background-color: var(--color-ocean-950);
     color: var(--color-sand-50);
 }
 

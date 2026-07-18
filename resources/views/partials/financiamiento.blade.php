@@ -5,8 +5,8 @@
             <p class="eyebrow text-terra-500"><x-t><x-slot:es>Financiamiento</x-slot:es><x-slot:en>Financing</x-slot:en></x-t></p>
             <h2 class="display mt-6 text-4xl font-light text-ink sm:text-5xl">
                 <x-t>
-                    <x-slot:es>Opciones flexibles para <em>llegar al mar</em></x-slot:es>
-                    <x-slot:en>Flexible ways to <em>reach the sea</em></x-slot:en>
+                    <x-slot:es>Opciones de crédito para <em>mexicanos y estadounidenses</em></x-slot:es>
+                    <x-slot:en>Credit options for <em>Mexicans and U.S. citizens</em></x-slot:en>
                 </x-t>
             </h2>
         </div>
@@ -16,6 +16,7 @@
             <div class="reveal-group flex flex-col rounded-2xl border border-ink/8 bg-sand-50 p-10 lg:p-14">
                 <p class="eyebrow text-[0.6rem] text-ink-soft"><x-t><x-slot:es>Crédito hipotecario · Santander</x-slot:es><x-slot:en>Mortgage · Santander</x-slot:en></x-t></p>
                 <h3 class="display mt-4 text-2xl text-ink"><x-t><x-slot:es>Financiamiento <em>en México</em></x-slot:es><x-slot:en>Financing <em>in Mexico</em></x-slot:en></x-t></h3>
+                {{-- DATOS FINANCIEROS EDITABLES — pendientes de validación comercial (tasas, %, plazos, requisitos). No inventar; ajustar los valores aquí una vez confirmados. --}}
                 <div class="mt-8 grid grid-cols-2 gap-x-6 gap-y-8">
                     @foreach ([
                         ['n' => '8.95%', 'es' => 'Tasas desde', 'en' => 'Rates from'],
@@ -39,8 +40,9 @@
 
             {{-- US Citizens --}}
             <div class="reveal-group flex flex-col rounded-2xl bg-ocean-900 p-10 lg:p-14">
-                <p class="eyebrow text-[0.6rem] text-ocean-300">Cross-border financing</p>
-                <h3 class="display mt-4 text-2xl text-sand-50">Financing for <em>U.S. citizens</em></h3>
+                <p class="eyebrow text-[0.6rem] text-ocean-300"><x-t><x-slot:es>Crédito transfronterizo</x-slot:es><x-slot:en>Cross-border financing</x-slot:en></x-t></p>
+                <h3 class="display mt-4 text-2xl text-sand-50"><x-t><x-slot:es>Financiamiento para <em>estadounidenses</em></x-slot:es><x-slot:en>Financing for <em>U.S. citizens</em></x-slot:en></x-t></h3>
+                {{-- DATOS FINANCIEROS EDITABLES — pendientes de validación comercial (tasas, %, plazos, requisitos). No inventar; ajustar los valores aquí una vez confirmados. --}}
                 <div class="mt-8 grid grid-cols-2 gap-x-6 gap-y-8">
                     @foreach ([
                         ['n' => '65%', 'es' => 'Hasta — de financiamiento', 'en' => 'Up to — financing'],

@@ -1,4 +1,12 @@
 {{-- ============================== DISPONIBILIDAD (interactive site plan) ============================== --}}
+{{--
+    INVENTARIO EDITABLE — controlado por archivos de datos (NO inventar):
+      · Casas disponibles / vendidas / reservadas → resources/data/lots.json
+      · Departamentos disponibles / vendidos / reservados → resources/data/apartments.json
+    Cada entrada define: 'n' = número de lote/residencia · 'm2' = superficie · 'status' = 'available' | 'sold' | 'reserved' · 'd' = trazo SVG.
+    Los conteos (Disponibles/Vendidas) se calculan de esos archivos (abajo).
+    La información mostrada al seleccionar una propiedad (número, superficie, estado) sale de esos mismos campos.
+--}}
 @php
     $lots = json_decode(file_get_contents(resource_path('data/lots.json')), true) ?: [];
     $avail = collect($lots)->where('status', 'available')->count();
@@ -42,7 +50,7 @@
                 <button @click="$store.product.tab = 'casas'; active = null"
                     class="eyebrow whitespace-nowrap rounded-full px-3.5 py-2.5 text-[0.625rem]! tracking-[0.16em]! transition-all duration-300 sm:px-6 sm:py-2.5 sm:text-xs! sm:tracking-[0.22em]!"
                     :class="$store.product.tab === 'casas' ? 'bg-sand-50 text-ink' : 'text-sand-200/70 hover:text-sand-50'"
-                >Casas Candé</button>
+                ><span class="lang-es">Casas</span><span class="lang-en">Houses</span></button>
                 <button @click="$store.product.tab = 'depas'; active = null"
                     class="eyebrow whitespace-nowrap rounded-full px-3.5 py-2.5 text-[0.625rem]! tracking-[0.16em]! transition-all duration-300 sm:px-6 sm:py-2.5 sm:text-xs! sm:tracking-[0.22em]!"
                     :class="$store.product.tab === 'depas' ? 'bg-sand-50 text-ink' : 'text-sand-200/70 hover:text-sand-50'"
@@ -96,7 +104,7 @@
                     <div class="flex min-h-[19rem] flex-col justify-center rounded-2xl border border-sand-50/15 bg-ocean-900/60 p-8 backdrop-blur-sm lg:min-h-[22rem] lg:p-10">
                         <template x-if="!active">
                             <div class="py-6">
-                                <p class="eyebrow text-[0.6rem] text-ocean-300">Casas Candé</p>
+                                <p class="eyebrow text-[0.6rem] text-ocean-300"><span class="lang-es">Casas</span><span class="lang-en">Houses</span></p>
                                 <p class="display mt-3 text-2xl font-light text-sand-50">
                                     <x-t><x-slot:es>Selecciona un lote para ver los detalles</x-slot:es><x-slot:en>Select a lot to see the details</x-slot:en></x-t>
                                 </p>
@@ -109,7 +117,7 @@
                         <template x-if="active">
                             <div class="py-2">
                                 <div class="flex items-center justify-between">
-                                    <p class="eyebrow text-[0.6rem] text-ocean-300">Casas Candé</p>
+                                    <p class="eyebrow text-[0.6rem] text-ocean-300"><span class="lang-es">Casas</span><span class="lang-en">Houses</span></p>
                                     <span class="eyebrow rounded-full px-3 py-1 text-[0.5rem]"
                                         :class="active && active.status === 'available' ? 'bg-terra-400/20 text-terra-300' : 'bg-sand-50/10 text-sand-200/60'">
                                         <span x-show="active && active.status === 'available'"><span class="lang-es">Disponible</span><span class="lang-en">Available</span></span>
@@ -125,7 +133,7 @@
                                 </div>
                                 <a href="#contacto"
                                     class="eyebrow mt-8 inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-[0.65rem] transition-all duration-300"
-                                    :class="active && active.status === 'available' ? 'bg-terra-500 text-sand-50 hover:bg-terra-600' : 'border border-sand-50/20 text-sand-200/70 hover:border-sand-50/40'">
+                                    :class="active && active.status === 'available' ? 'bg-terra-300 text-ocean-950 hover:bg-sand-50' : 'border border-sand-50/20 text-sand-200/70 hover:border-sand-50/40'">
                                     <span x-show="active && active.status === 'available'"><span class="lang-es">Solicitar información</span><span class="lang-en">Request information</span></span>
                                     <span x-show="active && active.status !== 'available'"><span class="lang-es">Ver otras opciones</span><span class="lang-en">See other options</span></span>
                                 </a>
@@ -208,7 +216,7 @@
                                 </div>
                                 <a href="#contacto"
                                     class="eyebrow mt-8 inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-[0.65rem] transition-all duration-300"
-                                    :class="active && active.status === 'available' ? 'bg-terra-500 text-sand-50 hover:bg-terra-600' : 'border border-sand-50/20 text-sand-200/70 hover:border-sand-50/40'">
+                                    :class="active && active.status === 'available' ? 'bg-terra-300 text-ocean-950 hover:bg-sand-50' : 'border border-sand-50/20 text-sand-200/70 hover:border-sand-50/40'">
                                     <span x-show="active && active.status === 'available'"><span class="lang-es">Solicitar información</span><span class="lang-en">Request information</span></span>
                                     <span x-show="active && active.status !== 'available'"><span class="lang-es">Ver otras opciones</span><span class="lang-en">See other options</span></span>
                                 </a>

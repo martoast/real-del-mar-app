@@ -44,8 +44,8 @@
             <div class="reveal relative lg:col-span-5">
                 <div class="overflow-hidden rounded-2xl bg-ocean-950 shadow-xl shadow-ink/10">
                     <img
-                        src="{{ asset('images/cande-exterior.png') }}"
-                        alt="Exterior de Casas Candé en Real del Mar"
+                        src="{{ asset('images/cande-contraportada.jpg') }}"
+                        alt="Residencia Candé frente al mar al atardecer en Real del Mar"
                         loading="lazy"
                         class="aspect-[4/5] w-full object-cover"
                     >

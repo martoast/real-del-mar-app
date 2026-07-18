@@ -1,5 +1,5 @@
 {{-- ============================== CONTACTO (blueprint: narrow conversion form, Bolt CRM webhook) ============================== --}}
-<section id="contacto" class="bg-sand-100 py-24 lg:py-32"
+<section id="{{ $sectionId ?? 'contacto' }}" class="bg-sand-100 py-24 lg:py-32"
     x-data="{
         sending: false,
         sent: false,
