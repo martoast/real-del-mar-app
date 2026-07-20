@@ -4,7 +4,9 @@
         ['img' => 'rdm-am-golf.webp',        't_es' => 'Campo de golf',      't_en' => 'Golf course',     'd_es' => '18 hoyos con vistas espectaculares al mar.',           'd_en' => '18 holes with stunning sea views.'],
         ['img' => 'rdm-am-hipico.webp',      't_es' => 'Club hípico',        't_en' => 'Equestrian club',  'd_es' => 'Para los amantes del mundo ecuestre.',                'd_en' => 'For lovers of the equestrian world.'],
         ['img' => 'rdm-am-club.jpg',         't_es' => 'Casa Club',          't_en' => 'Clubhouse',        'd_es' => 'Espacios sociales elegantes para convivir y relajarse.', 'd_en' => 'Elegant social spaces to gather and relax.'],
-        ['img' => 'rdm-am-hotel.jpg',        't_es' => 'Hotel',             't_en' => 'Hotel',            'd_es' => 'Hospedaje y descanso de resort, con todos los servicios a tu alcance.', 'd_en' => 'Resort lodging and relaxation, with every service within reach.'],
+        ['img' => 'rdm-am-hotel-1.jpg',      't_es' => 'Hotel',             't_en' => 'Hotel',            'd_es' => 'Hospedaje y descanso de resort, con todos los servicios a tu alcance.', 'd_en' => 'Resort lodging and relaxation, with every service within reach.',
+            'type' => 'hotel',
+            'photos' => ['rdm-am-hotel-1.jpg', 'rdm-am-hotel-2.jpg', 'rdm-am-hotel-3.jpg', 'rdm-am-hotel-4.jpg', 'rdm-am-hotel-5.jpg']],
         ['img' => 'rdm-am-padel.webp',       't_es' => 'Canchas deportivas', 't_en' => 'Sports courts',    'd_es' => 'Disfruta las canchas de pádel y tenis en un entorno privado.', 'd_en' => 'Enjoy the padel and tennis courts in a private setting.'],
         ['img' => 'rdm-am-parque.webp',      't_es' => 'Parque ecológico',   't_en' => 'Ecological park',  'd_es' => 'Áreas verdes para reconectar con la naturaleza.',      'd_en' => 'Green areas to connect with nature.'],
         ['img' => 'rdm-am-escuela.webp',     't_es' => 'Escuela privada',    't_en' => 'Private school',   'd_es' => 'Educación de primer nivel dentro del complejo.',       'd_en' => 'First-class education within the community.'],
@@ -53,17 +55,60 @@
     <div x-ref="track"
         class="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-6 pb-2 lg:px-10 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         @foreach ($amenidades as $a)
-            <article data-card class="group w-[78vw] shrink-0 snap-start sm:w-[340px] lg:w-[380px]">
-                <div class="relative overflow-hidden rounded-2xl bg-ocean-950 shadow-lg shadow-ink/5">
-                    <img src="{{ asset('images/' . $a['img']) }}" alt="{{ $a['t_es'] }}" loading="lazy"
-                        class="aspect-[3/4] w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-ocean-950/90 via-ocean-950/15 to-transparent"></div>
-                    <div class="absolute inset-x-0 bottom-0 p-7">
-                        <h3 class="display text-2xl text-sand-50"><span class="lang-es">{{ $a['t_es'] }}</span><span class="lang-en">{{ $a['t_en'] }}</span></h3>
-                        <p class="mt-2 text-sm leading-relaxed text-sand-100/80"><span class="lang-es">{{ $a['d_es'] }}</span><span class="lang-en">{{ $a['d_en'] }}</span></p>
+            @if (($a['type'] ?? null) === 'hotel')
+                {{-- ===== Hotel: carrusel de fotos + accesos (Ubicación · Teléfono · WhatsApp) ===== --}}
+                @php $hotelUrls = array_map(fn ($p) => asset('images/' . $p), $a['photos']); @endphp
+                <article data-card class="group w-[78vw] shrink-0 snap-start sm:w-[340px] lg:w-[380px]">
+                    <div class="relative overflow-hidden rounded-2xl bg-ocean-950 shadow-lg shadow-ink/5"
+                        x-data="{ i: 0, photos: @js($hotelUrls), go(d) { this.i = (this.i + d + this.photos.length) % this.photos.length }, set(k) { this.i = k } }">
+
+                        {{-- Imagen activa del carrusel --}}
+                        <div class="relative aspect-[3/4] w-full">
+                            <img :src="photos[i]" alt="Hotel Real del Mar" loading="lazy"
+                                class="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
+                        </div>
+
+                        {{-- Degradado inferior (igual que las demás tarjetas) --}}
+                        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ocean-950/90 via-ocean-950/15 to-transparent"></div>
+
+                        {{-- Flechas del carrusel (tap: desktop y móvil) --}}
+                        <button type="button" @click="go(-1)" aria-label="Foto anterior"
+                            class="absolute left-3 top-[38%] z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-ocean-950/40 text-sand-50 backdrop-blur-sm transition-colors hover:bg-ocean-950/70">
+                            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                        </button>
+                        <button type="button" @click="go(1)" aria-label="Foto siguiente"
+                            class="absolute right-3 top-[38%] z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-ocean-950/40 text-sand-50 backdrop-blur-sm transition-colors hover:bg-ocean-950/70">
+                            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                        </button>
+
+                        {{-- Contenido inferior: puntos + texto + accesos --}}
+                        <div class="absolute inset-x-0 bottom-0 p-7">
+                            {{-- Puntos indicadores --}}
+                            <div class="mb-4 flex gap-1.5">
+                                @foreach ($a['photos'] as $k => $p)
+                                    <button type="button" @click="set({{ $k }})" aria-label="Ir a la foto {{ $k + 1 }}"
+                                        class="h-1.5 rounded-full transition-all" :class="i === {{ $k }} ? 'w-5 bg-sand-50' : 'w-1.5 bg-sand-50/50'"></button>
+                                @endforeach
+                            </div>
+
+                            <h3 class="display text-2xl text-sand-50"><span class="lang-es">{{ $a['t_es'] }}</span><span class="lang-en">{{ $a['t_en'] }}</span></h3>
+                            <p class="mt-2 text-sm leading-relaxed text-sand-100/80"><span class="lang-es">{{ $a['d_es'] }}</span><span class="lang-en">{{ $a['d_en'] }}</span></p>
+                        </div>
                     </div>
-                </div>
-            </article>
+                </article>
+            @else
+                <article data-card class="group w-[78vw] shrink-0 snap-start sm:w-[340px] lg:w-[380px]">
+                    <div class="relative overflow-hidden rounded-2xl bg-ocean-950 shadow-lg shadow-ink/5">
+                        <img src="{{ asset('images/' . $a['img']) }}" alt="{{ $a['t_es'] }}" loading="lazy"
+                            class="aspect-[3/4] w-full object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-ocean-950/90 via-ocean-950/15 to-transparent"></div>
+                        <div class="absolute inset-x-0 bottom-0 p-7">
+                            <h3 class="display text-2xl text-sand-50"><span class="lang-es">{{ $a['t_es'] }}</span><span class="lang-en">{{ $a['t_en'] }}</span></h3>
+                            <p class="mt-2 text-sm leading-relaxed text-sand-100/80"><span class="lang-es">{{ $a['d_es'] }}</span><span class="lang-en">{{ $a['d_en'] }}</span></p>
+                        </div>
+                    </div>
+                </article>
+            @endif
         @endforeach
         {{-- trailing spacer so the last card can rest with breathing room --}}
         <div class="w-2 shrink-0 lg:w-6" aria-hidden="true"></div>
