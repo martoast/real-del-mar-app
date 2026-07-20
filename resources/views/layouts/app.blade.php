@@ -227,7 +227,7 @@
     </footer>
 
     {{-- Botones flotantes (costado derecho): Ubicación · Teléfono · WhatsApp --}}
-    <div class="fixed bottom-6 right-6 z-40 flex flex-col items-center gap-3">
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col items-center gap-3 md:bottom-auto md:top-1/2 md:-translate-y-1/2">
         {{-- Ubicación · Real del Mar --}}
         <a href="https://maps.app.goo.gl/VXKG3A8x1Q2A7C827" target="_blank" rel="noopener"
             aria-label="Ubicación de Real del Mar" title="Ubicación"
